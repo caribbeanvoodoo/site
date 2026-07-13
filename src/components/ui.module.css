@@ -1,0 +1,69 @@
+/* Shared primitives used across sections. */
+
+.eyebrow {
+  font-family: var(--font-script);
+  color: var(--red-cursive);
+  font-size: 26px;
+  display: inline-block;
+  transform: rotate(-3deg);
+}
+.eyebrow.rot2 {
+  transform: rotate(-2deg);
+}
+
+.headline {
+  font-family: var(--font-display);
+  color: var(--gold);
+  line-height: 1;
+  margin: 0;
+}
+
+.body {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--text-body);
+}
+
+/* Buttons / link-buttons -------------------------------------------------- */
+.btn {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.solid {
+  background: var(--gold);
+  color: var(--gold-ink);
+  border: 1.5px solid var(--gold);
+}
+.solid:hover {
+  background: var(--gold-hover);
+  border-color: var(--gold-hover);
+}
+
+.ghost {
+  color: var(--gold);
+  background: transparent;
+  border: 1.5px solid var(--border-frame);
+}
+.ghost:hover {
+  background: var(--gold);
+  color: var(--gold-ink);
+}
+
+/* Neutral (lowest-ranked) pill — "Más plataformas". */
+.neutral {
+  color: var(--text-primary);
+  background: transparent;
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+}
+.neutral:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.5);
+}

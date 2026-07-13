@@ -1,0 +1,46 @@
+.section {
+  position: relative;
+  background: var(--bg-panel);
+  padding: 88px 26px;
+  scroll-margin-top: 60px;
+  border-top: 1px solid rgba(224, 179, 76, 0.08);
+}
+.wrap {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+.headline {
+  font-size: clamp(28px, 5.8vw, 44px);
+  line-height: 1.02;
+  margin: 12px 0 0;
+}
+.copy {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--text-body);
+  max-width: 440px;
+  margin: 16px auto 0;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 28px;
+}
+.btn {
+  font-size: 13px;
+  letter-spacing: 0.07em;
+  padding: 14px 24px;
+}
+.btnGhost {
+  padding: 13px 24px;
+  border-color: rgba(224, 179, 76, 0.5);
+}
+.contactLine {
+  font-size: 13px;
+  color: var(--text-faint);
+  margin-top: 24px;
+  letter-spacing: 0.04em;
+}

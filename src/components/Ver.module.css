@@ -1,0 +1,92 @@
+.section {
+  position: relative;
+  background: var(--bg-black);
+  padding: 88px 26px 96px;
+  scroll-margin-top: 60px;
+}
+.wrap {
+  max-width: 980px;
+  margin: 0 auto;
+  text-align: center;
+}
+.headline {
+  font-size: clamp(30px, 6.4vw, 50px);
+  line-height: 1;
+  margin: 12px 0 0;
+}
+.copy {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--text-body);
+  max-width: 520px;
+  margin: 16px auto 0;
+}
+
+.frame {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 34px auto 0;
+  max-width: 900px;
+  aspect-ratio: 16 / 9;
+  border: 1px solid rgba(224, 179, 76, 0.22);
+  border-radius: 4px;
+  overflow: hidden;
+  text-decoration: none;
+  /* Reset when used on a <button> (real-video play trigger). */
+  padding: 0;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+}
+.poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 45%,
+    rgba(20, 90, 80, calc(0.35 * var(--cvglow, 1))) 0%,
+    rgba(4, 8, 7, 0.72) 68%
+  );
+}
+.play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  background: rgba(224, 179, 76, 0.94);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 34px rgba(40, 175, 150, 0.5);
+}
+.caption {
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: #e9e2d4;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9);
+}
+.embed {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}

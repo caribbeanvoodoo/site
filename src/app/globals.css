@@ -1,0 +1,84 @@
+:root {
+  /* ---- Colors (design tokens, README §Design tokens) ---- */
+  --bg-black: #050605;
+  --bg-panel: #080c0a;
+  --bg-panel-lista: #070d0b;
+  --gold: #e0b34c;
+  --gold-hover: #edc45f;
+  --gold-ink: #14100d; /* text sitting on solid gold */
+  --red-cursive: #c8241a;
+  --red-cursive-bright: #e0392c;
+
+  --text-primary: #cbc3b2;
+  --text-body: #b3ab99;
+  --text-muted: #8f897a;
+  --text-faint: #6f6a5c;
+  --text-fineprint: #4f4b41;
+  --text-input: #e9e2d4;
+
+  --border-hairline: rgba(224, 179, 76, 0.1);
+  --border-frame: rgba(224, 179, 76, 0.5);
+
+  /* Ambient glow intensity multiplier (README "Ambiente" control, default 60% -> 1). */
+  --cvglow: 1;
+
+  --radius: 3px;
+
+  --font-display: "Bagel Fat One", system-ui, sans-serif;
+  --font-script: "Kaushan Script", cursive;
+  --font-body: "Work Sans", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-black);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+/* Hero glow breathing — the single deliberate animation on the page. */
+@keyframes cvBreathe {
+  0%,
+  100% {
+    opacity: 0.78;
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.07);
+  }
+}
+
+.cvBreathe {
+  animation: cvBreathe 7s ease-in-out infinite;
+}
+
+input::placeholder {
+  color: var(--text-faint);
+}
+
+/* Visible keyboard focus, site-wide (README §Interactions). */
+input:focus-visible,
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .cvBreathe {
+    animation: none !important;
+  }
+}
