@@ -13,8 +13,14 @@ async function resolveChannelId(handle: string): Promise<string | null> {
   const res = await fetch(url, { next: { revalidate: 3600 } });
   if (!res.ok) return null;
   const html = await res.text();
-  const match = html.match(/"channelId":"(UC[0-9A-Za-z_-]{22})"/);
-  return match ? match[1] : null;
+  // YouTube's channel page embeds the ID in a few different spots depending
+  // on layout version — try the canonical link first, then known JSON keys.
+  const canonical = html.match(
+    /<link rel="canonical" href="https:\/\/www\.youtube\.com\/channel\/(UC[0-9A-Za-z_-]{22})"/,
+  );
+  if (canonical) return canonical[1];
+  const jsonKey = html.match(/"(?:channelId|externalId)":"(UC[0-9A-Za-z_-]{22})"/);
+  return jsonKey ? jsonKey[1] : null;
 }
 
 async function fetchLatestVideoId(channelId: string): Promise<string | null> {
