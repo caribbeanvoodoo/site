@@ -45,6 +45,17 @@ Without these two vars, `/api/subscribe` returns a clean 500 and the form shows 
 "something went wrong" message rather than crashing — safe default, but signups won't be
 captured until the keys are set.
 
+### SMS is not active yet
+The Klaviyo account has no SMS sending number configured, so Klaviyo rejects SMS
+subscriptions ("Phone number is valid but is not in a supported region for this account").
+The route handles this: it subscribes the email, **saves the phone number on the profile**,
+and skips only the SMS consent — so a phone number never costs you the email signup. Those
+numbers accumulate on the profiles, ready to subscribe once SMS is set up.
+
+To turn SMS on: Klaviyo → Text messaging setup → configure a sending number for your regions
+(Mexico/US). No code change needed — the route already attempts SMS consent first and will
+start succeeding automatically.
+
 ## Deploying (Vercel + your domain)
 Repo is a standard Next.js App Router app — Vercel auto-detects it, no extra config needed.
 1. Push this `site/` repo to GitHub.
@@ -66,3 +77,6 @@ Repo is a standard Next.js App Router app — Vercel auto-detects it, no extra c
    master if the band gets one); `band_bw.png` carries a "Meta AI" watermark bottom-right —
    flagged, replacement paused for now per the band.
 4. **Klaviyo keys** — must be set in Vercel before the signup form actually captures anyone.
+   Verified working locally against the "Site Signup" list (ID `Vzrg7j`).
+5. **SMS sending number** — not configured in Klaviyo, so SMS consent is skipped (phones are
+   still captured). See "SMS is not active yet" above.
