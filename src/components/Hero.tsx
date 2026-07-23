@@ -16,7 +16,14 @@ export function Hero() {
 
       <div className={styles.inner}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/assets/logo_gold.png" alt="Caribbean Voodoo" className={styles.logo} />
+        <img
+          src="/assets/logo_gold.png"
+          alt="Caribbean Voodoo"
+          className={styles.logo}
+          width={717}
+          height={317}
+          fetchPriority="high"
+        />
         <p className={styles.ethos}>{t.hero.ethos}</p>
         <p className={styles.tagline}>{t.hero.tagline}</p>
         <div className={styles.actions}>

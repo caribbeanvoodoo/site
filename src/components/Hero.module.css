@@ -48,6 +48,9 @@
 
 .logo {
   width: min(340px, 82vw);
+  /* Intrinsic width/height attrs are set on the <img> to reserve space and
+     avoid layout shift; height:auto keeps the aspect ratio. */
+  height: auto;
   filter: drop-shadow(0 0 30px rgba(40, 175, 150, calc(0.6 * var(--cvglow, 1))));
 }
 

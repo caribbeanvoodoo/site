@@ -28,6 +28,7 @@
 .photo {
   position: relative;
   width: 100%;
+  height: auto;
   display: block;
   border: 1px solid rgba(224, 179, 76, 0.18);
   border-radius: 2px;

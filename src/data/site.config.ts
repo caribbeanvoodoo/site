@@ -7,10 +7,16 @@
  * the markup, so they are trivial to replace.
  */
 
+/** Canonical origin. Used for metadataBase, sitemap, robots and JSON-LD. */
+export const SITE_URL = "https://caribbeanvoodoo.mx";
+
 export const siteConfig = {
   contact: {
     email: "caribbeanvoodoo.ok@gmail.com",
+    /** Display form. */
     whatsapp: "+52 984 130 0825",
+    /** Click-to-chat: wa.me needs digits only, no "+" or spaces. */
+    whatsappUrl: "https://wa.me/529841300825",
   },
 
   /**
@@ -26,17 +32,24 @@ export const siteConfig = {
   },
 
   /**
-   * "Ver" live session.
-   * The real video is resolved automatically at request time from the band's
-   * YouTube channel (see src/app/api/latest-video/route.ts and Ver.tsx).
-   * `posterHref` below is only the fallback used if that resolution fails.
+   * "Ver" section video — an explicitly pinned YouTube video.
+   *
+   * This is deliberately NOT auto-resolved. An earlier version fetched the
+   * channel's "latest" upload from the RSS feed, but that feed is not reliably
+   * newest-first and it silently embedded an unrelated 2020 video, which
+   * contradicted the section copy.
+   *
+   * Currently: "Caribbean Voodoo - No Sé Quién Soy" (official video).
+   * TODO(band): swap `videoId` for the "en vivo desde el jardín" live session
+   * once it is filmed and published — and update `ver.*` copy in
+   * src/i18n/dictionaries.ts to match. That is the only change needed.
    */
   video: {
-    posterHref: "https://www.youtube.com/results?search_query=Caribbean+Voodoo+en+vivo",
-    caption: "from the garden · vol. 1",
+    videoId: "tZfmBeuP4oc",
+    caption: "no sé quién soy · video oficial",
   },
 
-  /** Band's YouTube channel, used to auto-resolve the latest upload for "Ver". */
+  /** Band's YouTube channel. */
   youtubeChannelHandle: "@caribbeanvoodoo",
 
   /**

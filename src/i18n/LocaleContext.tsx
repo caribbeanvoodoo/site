@@ -27,6 +27,13 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
+  // Keep <html lang> in sync with the visible language. The attribute is
+  // server-rendered as "es"; without this a visitor reading the English copy
+  // would still get Spanish pronunciation from a screen reader.
+  useEffect(() => {
+    document.documentElement.lang = locale;
+  }, [locale]);
+
   function setLocale(next: Locale) {
     setLocaleState(next);
     try {

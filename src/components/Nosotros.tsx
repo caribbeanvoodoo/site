@@ -15,7 +15,13 @@ export function Nosotros() {
         <div className={styles.photoWrap}>
           <div className={styles.photoGlow} aria-hidden="true" />
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/assets/band_bw.png" alt="Caribbean Voodoo" className={styles.photo} />
+          <img
+            src="/assets/band_bw.jpg"
+            alt="Caribbean Voodoo"
+            className={styles.photo}
+            width={963}
+            height={840}
+          />
         </div>
         <div>
           <Eyebrow rotate={3}>{t.nosotros.eyebrow}</Eyebrow>

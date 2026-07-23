@@ -15,12 +15,8 @@ export type SignupErrorKind = "email" | "consent" | "network";
 /**
  * Submit a signup to the capture backend.
  *
- * ─── STUB ────────────────────────────────────────────────────────────────
- * No email/SMS provider is configured in this repo. This posts to the local
- * /api/subscribe route, which itself is a stub that just logs the payload.
- * Before launch, wire /api/subscribe (see src/app/api/subscribe/route.ts) to a
- * real provider — Klaviyo, Mailchimp + Twilio, Beehiiv, etc.
- * ─────────────────────────────────────────────────────────────────────────
+ * Posts to /api/subscribe, which forwards to Klaviyo (see
+ * src/app/api/subscribe/route.ts). Contract: 200 = captured, non-2xx = failed.
  */
 export async function submitSignup(payload: SignupPayload): Promise<void> {
   const res = await fetch("/api/subscribe", {

@@ -30,7 +30,18 @@ export function Prensa() {
           </a>
         </div>
         <div className={styles.contactLine}>
-          {contact.email} &nbsp;·&nbsp; {t.prensa.whatsapp} {contact.whatsapp}
+          <a href={`mailto:${contact.email}`} className={styles.contactLink}>
+            {contact.email}
+          </a>
+          &nbsp;·&nbsp;
+          <a
+            href={contact.whatsappUrl}
+            target="_blank"
+            rel="noopener"
+            className={styles.contactLink}
+          >
+            {t.prensa.whatsapp} {contact.whatsapp}
+          </a>
         </div>
       </div>
     </section>

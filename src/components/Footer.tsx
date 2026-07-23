@@ -11,7 +11,14 @@ export function Footer() {
   return (
     <footer className={styles.footer}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/assets/logo_gold.png" alt="Caribbean Voodoo" className={styles.logo} />
+      <img
+        src="/assets/logo_gold.png"
+        alt="Caribbean Voodoo"
+        className={styles.logo}
+        width={717}
+        height={317}
+        loading="lazy"
+      />
       <div className={styles.social}>
         <a href={social.instagram} target="_blank" rel="noopener" className={styles.socialLink}>
           Instagram

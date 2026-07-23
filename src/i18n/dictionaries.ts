@@ -108,8 +108,8 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     ver: {
       eyebrow: "Ver",
-      headline: "En vivo desde el jardín",
-      copy: "Nuestra sesión en vivo, con violín, grabada entre la selva. El ritual que hay que ver antes de que salga el cortometraje.",
+      headline: "No Sé Quién Soy",
+      copy: "Nuestro video oficial. Crudo y potente, como suena la banda en vivo. La sesión en el jardín llega pronto.",
       playAria: (title) => `Reproducir: ${title}`,
     },
     lista: {
@@ -185,8 +185,8 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     ver: {
       eyebrow: "Watch",
-      headline: "Live from the garden",
-      copy: "Our live session, with violin, recorded deep in the jungle. The ritual you need to see before the short film drops.",
+      headline: "No Sé Quién Soy",
+      copy: "Our official video. Raw and powerful, the way the band sounds live. The session in the garden is coming soon.",
       playAria: (title) => `Play: ${title}`,
     },
     lista: {

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { track } from "@vercel/analytics";
 import {
   EMAIL_RE,
   hasJoined,
@@ -11,6 +12,9 @@ import {
 import { useLocale } from "@/i18n/LocaleContext";
 import ui from "./ui.module.css";
 import styles from "./Lista.module.css";
+
+/** Ties the inline error text to whichever field caused it. */
+const ERROR_ID = "signup-error";
 
 export function SignupForm() {
   const { t } = useLocale();
@@ -45,6 +49,9 @@ export function SignupForm() {
     try {
       await submitSignup({ email, phone: phone || undefined, consent });
       persistSignup({ email, phone: phone || undefined, consent });
+      // The page's core conversion. `withPhone` shows how many fans also opt
+      // into SMS, which is what justifies setting up SMS sending in Klaviyo.
+      track("signup", { withPhone: Boolean(phone) });
       setJoined(true);
     } catch {
       setErrorKind("network");
@@ -78,6 +85,7 @@ export function SignupForm() {
           placeholder={t.lista.emailPlaceholder}
           className={styles.input}
           aria-invalid={errorKind === "email"}
+          aria-describedby={errorKind === "email" ? ERROR_ID : undefined}
         />
       </label>
 
@@ -96,12 +104,18 @@ export function SignupForm() {
       </label>
 
       <label className={styles.consent}>
-        <input name="consent" type="checkbox" className={styles.checkbox} />
+        <input
+          name="consent"
+          type="checkbox"
+          className={styles.checkbox}
+          aria-invalid={errorKind === "consent"}
+          aria-describedby={errorKind === "consent" ? ERROR_ID : undefined}
+        />
         <span className={styles.consentText}>{t.lista.consent}</span>
       </label>
 
       {errorKind && (
-        <div className={styles.error} role="alert">
+        <div id={ERROR_ID} className={styles.error} role="alert">
           {t.lista.errors[errorKind]}
         </div>
       )}

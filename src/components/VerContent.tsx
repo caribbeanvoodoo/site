@@ -8,11 +8,9 @@ import { VerPlayer } from "./VerPlayer";
 
 export function VerContent({
   videoId,
-  fallbackHref,
   caption,
 }: {
-  videoId: string | null;
-  fallbackHref: string;
+  videoId: string;
   caption: string;
 }) {
   const { t } = useLocale();
@@ -25,7 +23,6 @@ export function VerContent({
 
       <VerPlayer
         videoId={videoId}
-        fallbackHref={fallbackHref}
         caption={caption}
         title={t.ver.headline}
         playAria={t.ver.playAria(t.ver.headline)}
