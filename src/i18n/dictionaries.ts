@@ -45,6 +45,7 @@ export interface Dictionary {
     consent: string;
     submit: string;
     submitting: string;
+    privacy: string;
     confirmScript: string;
     confirmCopy: string;
     errors: {
@@ -124,6 +125,8 @@ export const dictionaries: Record<Locale, Dictionary> = {
       consent: "Acepto recibir correos y mensajes de Caribbean Voodoo. Puedo salir del culto cuando quiera.",
       submit: "Unirme",
       submitting: "Enviando…",
+      privacy:
+        "Usamos tu correo y teléfono solo para enviarte noticias de la banda. Guardamos tus datos en Klaviyo y nunca los vendemos. Puedes darte de baja en cualquier momento desde cualquier mensaje. Pueden aplicar tarifas de mensajes y datos.",
       confirmScript: "Ya eres de los nuestros",
       confirmCopy: "Serás de los primeros en recibir el nuevo álbum, el cortometraje y las primeras fechas. Bienvenido a Caribbean Voodoo.",
       errors: {
@@ -201,6 +204,8 @@ export const dictionaries: Record<Locale, Dictionary> = {
       consent: "I agree to receive emails and texts from Caribbean Voodoo. I can leave the cult whenever I want.",
       submit: "Join",
       submitting: "Sending…",
+      privacy:
+        "We use your email and phone only to send you band news. Your details are stored in Klaviyo and never sold. You can unsubscribe at any time from any message. Message and data rates may apply.",
       confirmScript: "You're one of us now",
       confirmCopy: "You'll be among the first to get the new album, the short film, and the first tour dates. Welcome to Caribbean Voodoo.",
       errors: {

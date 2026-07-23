@@ -36,7 +36,10 @@
 .langBtn {
   background: none;
   border: none;
-  padding: 4px 2px;
+  /* Meets the 24x24 minimum target size without changing the visual weight. */
+  min-width: 28px;
+  min-height: 28px;
+  padding: 4px 6px;
   font-family: var(--font-body);
   font-weight: 600;
   font-size: 11px;

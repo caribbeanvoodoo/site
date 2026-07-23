@@ -94,7 +94,9 @@
   color: var(--text-muted);
 }
 .optional {
-  color: #5f5a4e;
+  /* Was #5f5a4e (2.86:1) — the only signal the SMS field is optional, so it
+     must be legible. */
+  color: var(--text-muted);
   text-transform: none;
   letter-spacing: 0;
 }
@@ -130,7 +132,7 @@
 }
 
 .error {
-  color: var(--red-cursive-bright);
+  color: var(--red-error);
   font-size: 13px;
   font-weight: 500;
 }
@@ -146,6 +148,15 @@
 .submit:disabled {
   opacity: 0.6;
   cursor: progress;
+}
+
+/* Data-use notice shown at the point of collection. */
+.privacy {
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: var(--text-faint);
+  margin: 14px 0 0;
+  text-align: left;
 }
 
 /* Success confirmation panel --------------------------------------------- */

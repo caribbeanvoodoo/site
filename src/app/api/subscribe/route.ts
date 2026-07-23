@@ -101,34 +101,48 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Signup is not configured" }, { status: 500 });
   }
 
-  let res = await postToKlaviyo(
-    buildPayload({ email, phone, listId, includeSms: true }),
-    apiKey,
-  );
+  // Escalating fallback. The email is the thing we must never lose, so each
+  // step strips away only the phone-related part Klaviyo objected to:
+  //   1. email + phone + SMS consent      — the ideal outcome
+  //   2. email + phone, no SMS consent    — no SMS sending number for that
+  //                                         region; the number is still worth
+  //                                         keeping for when SMS is enabled
+  //   3. email only                       — the number itself is unusable
+  //                                         (bad format); drop it rather than
+  //                                         throw away the signup
+  const attempts: Array<{ label: string; payload: unknown }> = [
+    { label: "email+phone+sms", payload: buildPayload({ email, phone, listId, includeSms: true }) },
+  ];
+  if (phone) {
+    attempts.push(
+      { label: "email+phone", payload: buildPayload({ email, phone, listId, includeSms: false }) },
+      { label: "email-only", payload: buildPayload({ email, listId, includeSms: false }) },
+    );
+  }
 
-  // Retry without SMS if the phone number was the only thing Klaviyo objected to.
-  if (!res.ok && phone) {
-    const detail = await res.text().catch(() => "");
-    if (isPhoneError(detail)) {
-      console.warn(
-        "[subscribe] SMS subscription rejected, retrying email-only (phone still saved):",
-        detail,
-      );
-      res = await postToKlaviyo(
-        buildPayload({ email, phone, listId, includeSms: false }),
-        apiKey,
-      );
-    } else {
-      console.error("[subscribe] Klaviyo error", res.status, detail);
-      return NextResponse.json({ error: "Signup failed" }, { status: 502 });
+  let lastStatus = 0;
+  let lastDetail = "";
+
+  for (const [i, attempt] of attempts.entries()) {
+    const res = await postToKlaviyo(attempt.payload, apiKey);
+    if (res.ok) {
+      if (i > 0) {
+        console.warn(
+          `[subscribe] captured via fallback "${attempt.label}" after Klaviyo rejected the phone:`,
+          lastDetail,
+        );
+      }
+      return NextResponse.json({ ok: true });
     }
+
+    lastStatus = res.status;
+    lastDetail = await res.text().catch(() => "");
+
+    // Only a phone-specific rejection is worth retrying; anything else
+    // (bad key, bad list, outage) will fail identically every time.
+    if (!isPhoneError(lastDetail)) break;
   }
 
-  if (!res.ok) {
-    const detail = await res.text().catch(() => "");
-    console.error("[subscribe] Klaviyo error", res.status, detail);
-    return NextResponse.json({ error: "Signup failed" }, { status: 502 });
-  }
-
-  return NextResponse.json({ ok: true });
+  console.error("[subscribe] Klaviyo error", lastStatus, lastDetail);
+  return NextResponse.json({ error: "Signup failed" }, { status: 502 });
 }

@@ -3,4 +3,10 @@ node_modules
 next-env.d.ts
 *.tsbuildinfo
 .DS_Store
-.env*.local
+.vercel
+
+# Env files. Next.js loads .env and .env.production too, so ignore them all
+# and keep only .env.local.example tracked.
+.env
+.env.*
+!.env.local.example

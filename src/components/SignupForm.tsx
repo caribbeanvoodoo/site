@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { track } from "@vercel/analytics";
 import {
   EMAIL_RE,
@@ -21,6 +21,10 @@ export function SignupForm() {
   const [joined, setJoined] = useState(false);
   const [errorKind, setErrorKind] = useState<SignupErrorKind | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  // Distinguishes "just signed up" from "was already signed up on load", so
+  // the confirmation only steals focus when it's the result of an action.
+  const justJoined = useRef(false);
+  const confirmRef = useRef<HTMLDivElement>(null);
 
   // Persisted success state: a returning signed-up visitor sees the
   // confirmation, not the form. Runs after mount to avoid hydration mismatch.
@@ -28,12 +32,27 @@ export function SignupForm() {
     if (hasJoined()) setJoined(true);
   }, []);
 
+  // Submitting replaces the form with the confirmation panel, which would
+  // otherwise drop keyboard focus back to the top of the document.
+  useEffect(() => {
+    if (joined && justJoined.current) confirmRef.current?.focus();
+  }, [joined]);
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
     const email = (form.elements.namedItem("email") as HTMLInputElement).value.trim();
     const phone = (form.elements.namedItem("phone") as HTMLInputElement).value.trim();
     const consent = (form.elements.namedItem("consent") as HTMLInputElement).checked;
+    const honeypot = (form.elements.namedItem("website") as HTMLInputElement).value;
+
+    // A bot filled the hidden field. Show the success state so it doesn't
+    // retry, but never send anything to Klaviyo.
+    if (honeypot) {
+      justJoined.current = true;
+      setJoined(true);
+      return;
+    }
 
     if (!EMAIL_RE.test(email)) {
       setErrorKind("email");
@@ -52,6 +71,7 @@ export function SignupForm() {
       // The page's core conversion. `withPhone` shows how many fans also opt
       // into SMS, which is what justifies setting up SMS sending in Klaviyo.
       track("signup", { withPhone: Boolean(phone) });
+      justJoined.current = true;
       setJoined(true);
     } catch {
       setErrorKind("network");
@@ -62,7 +82,7 @@ export function SignupForm() {
 
   if (joined) {
     return (
-      <div className={styles.confirm} role="status">
+      <div className={styles.confirm} role="status" tabIndex={-1} ref={confirmRef}>
         <div className={styles.confirmGlyph} aria-hidden="true">
           ⛧
         </div>
@@ -103,6 +123,13 @@ export function SignupForm() {
         />
       </label>
 
+      {/* Honeypot: hidden from humans, commonly filled by bots. Never shown,
+          never required — if it has a value we silently drop the submission. */}
+      <div className="srOnly" aria-hidden="true">
+        <label htmlFor="cv-website">Website</label>
+        <input id="cv-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
+
       <label className={styles.consent}>
         <input
           name="consent"
@@ -127,6 +154,8 @@ export function SignupForm() {
       >
         {submitting ? t.lista.submitting : t.lista.submit}
       </button>
+
+      <p className={styles.privacy}>{t.lista.privacy}</p>
     </form>
   );
 }

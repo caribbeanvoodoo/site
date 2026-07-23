@@ -52,6 +52,13 @@ export function VerPlayer({
         className={styles.poster}
         width={900}
         height={506}
+        onError={(e) => {
+          // Not every video has a maxres thumbnail; YouTube serves a grey
+          // 120x90 placeholder instead. hqdefault always exists.
+          const img = e.currentTarget;
+          const fallback = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+          if (!img.src.endsWith("hqdefault.jpg")) img.src = fallback;
+        }}
       />
       <div className={styles.overlay} aria-hidden="true" />
       <div className={styles.play} aria-hidden="true">

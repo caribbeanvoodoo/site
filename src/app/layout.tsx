@@ -27,8 +27,10 @@ const workSans = Work_Sans({
 });
 
 const TITLE = "Caribbean Voodoo · Rock and Roll from Tulum";
+// Spanish-first, matching the default page language (an earlier version
+// code-switched mid-sentence between English and Spanish).
 const DESCRIPTION =
-  "Caribbean Voodoo — raw psychedelic rock and roll from Tulum, Mexico. Escucha Serpientes, mira el video y únete a la lista.";
+  "Caribbean Voodoo — rock and roll psicodélico y crudo desde Tulum, México. Escucha Serpientes, mira el video y únete a la lista.";
 
 export const metadata: Metadata = {
   // Without metadataBase, relative OG images resolve against whatever host

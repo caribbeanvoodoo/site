@@ -15,6 +15,10 @@ export function Hero() {
       </div>
 
       <div className={styles.inner}>
+        {/* The wordmark is an image, so the page had no real <h1>. This gives
+            crawlers and screen readers a proper top-level heading without
+            changing the visual design. */}
+        <h1 className="srOnly">Caribbean Voodoo — {t.hero.tagline}</h1>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/assets/logo_gold.png"
