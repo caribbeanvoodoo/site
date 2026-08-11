@@ -48,25 +48,25 @@ function reserva(text: string): string {
  */
 export const shows: Show[] = [
   {
-    slug: "karunna-tulum-ago-2026",
-    name: "Caribbean Voodoo en Karunna — Tulum",
-    city: "Tulum, Q. Roo",
+    slug: "karunna-leon-ago-2026",
+    name: "Caribbean Voodoo en Karunna — León",
+    city: "León, Gto.",
     venue: "Karunna",
-    address: "Tulum, Quintana Roo, México", // TODO(address): full street address
-    startDateTime: "2026-08-20T21:00:00-05:00",
+    address: "León, Guanajuato, México", // TODO(address): full street address
+    startDateTime: "2026-08-20T21:00:00-06:00",
     dateLabel: { es: "20 ago", en: "Aug 20" },
     timeLabel: "9:00 PM",
     presentedBy: "Karunna",
     lineup: ["Caribbean Voodoo", "MODUK"],
     cover: 100,
     description: {
-      es: "Karunna presenta a Caribbean Voodoo desde Tulum, con los invitados especiales MODUK. Rock and roll tropical, música en vivo, cocteles y buena vibra. Reserva tu lugar.",
-      en: "Karunna presents Caribbean Voodoo from Tulum, with special guests MODUK. Tropical rock and roll, live music, cocktails, and good vibes. Reserve your spot.",
+      es: "Karunna presenta a Caribbean Voodoo, la banda de rock and roll tropical desde Tulum, con los invitados especiales MODUK. Música en vivo, cocteles y buena vibra en León. Reserva tu lugar.",
+      en: "Karunna presents Caribbean Voodoo — tropical rock and roll from Tulum — with special guests MODUK. Live music, cocktails, and good vibes in León. Reserve your spot.",
     },
-    flyer: undefined, // TODO(flyer): /assets/events/karunna-tulum.jpg
+    flyer: undefined, // TODO(flyer): /assets/events/karunna-leon.jpg
     cta: {
       href: reserva(
-        "Hola, quiero reservar para Caribbean Voodoo en Karunna, Tulum — jueves 20 de agosto.",
+        "Hola, quiero reservar para Caribbean Voodoo en Karunna, León — jueves 20 de agosto.",
       ),
       label: { es: "Reserva tu lugar", en: "Reserve your spot" },
       external: true,

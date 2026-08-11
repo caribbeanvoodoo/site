@@ -68,7 +68,7 @@ const musicGroupJsonLd = {
   foundingLocation: { "@type": "Place", name: "Tulum, Quintana Roo, Mexico" },
   url: SITE_URL,
   logo: `${SITE_URL}/assets/logo_gold.png`,
-  image: `${SITE_URL}/assets/band_bw.jpg`,
+  image: `${SITE_URL}/assets/og.jpg`,
   email: siteConfig.contact.email,
   sameAs: [siteConfig.social.instagram, siteConfig.social.youtube, siteConfig.streaming.spotify],
   album: {
@@ -81,7 +81,6 @@ const musicGroupJsonLd = {
     { "@type": "Person", name: "Dorian Remis" },
     { "@type": "Person", name: "Che" },
     { "@type": "Person", name: "JP" },
-    { "@type": "Person", name: "Detz conde" },
   ],
 };
 
