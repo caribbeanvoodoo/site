@@ -1,0 +1,9 @@
+{
+  "projectId": "911917fe-2e68-4bdc-8948-35babb8329b0",
+  "shape": "package",
+  "pkg": "caribbean-voodoo-ds",
+  "globalName": "CaribbeanVoodooDS",
+  "cssEntry": "src/brand.css",
+  "buildCmd": "npm run build",
+  "readmeHeader": ".design-sync/conventions.md"
+}

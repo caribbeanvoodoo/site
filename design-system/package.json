@@ -1,0 +1,31 @@
+{
+  "name": "caribbean-voodoo-ds",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Caribbean Voodoo brand component library for Claude Design.",
+  "type": "module",
+  "module": "dist/index.mjs",
+  "main": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "sideEffects": false,
+  "scripts": {
+    "build": "node build.mjs && tsc -p tsconfig.json --emitDeclarationOnly"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "esbuild": "^0.24.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "typescript": "^5"
+  }
+}
