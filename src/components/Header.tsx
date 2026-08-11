@@ -17,7 +17,7 @@ export function Header() {
 
   return (
     <header className={styles.header}>
-      <a href="#portada" className={styles.logoLink} aria-label="Caribbean Voodoo — inicio">
+      <a href="/#portada" className={styles.logoLink} aria-label="Caribbean Voodoo — inicio">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/assets/logo_gold.png"
@@ -49,7 +49,7 @@ export function Header() {
             EN
           </button>
         </div>
-        <a href="#lista" className={styles.cta}>
+        <a href="/#lista" className={styles.cta}>
           {t.header.cta}
         </a>
       </div>

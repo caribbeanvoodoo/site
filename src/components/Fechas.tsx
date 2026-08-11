@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { shows as defaultShows, type Show } from "@/data/shows";
 import { useLocale } from "@/i18n/LocaleContext";
 import { Eyebrow } from "./Eyebrow";
@@ -9,11 +10,11 @@ import styles from "./Fechas.module.css";
 /**
  * Fechas auto-switches between its two states based on the data:
  *   - no shows  -> honest "Nuevas fechas muy pronto" placeholder
- *   - has shows -> "Próximas fechas" list
+ *   - has shows -> "Próximas fechas" list, each row linking to its event page
  * Pass `shows` to override the default data source.
  */
 export function Fechas({ shows = defaultShows }: { shows?: Show[] }) {
-  const { t } = useLocale();
+  const { locale, t } = useLocale();
   const hasShows = shows.length > 0;
 
   return (
@@ -35,25 +36,19 @@ export function Fechas({ shows = defaultShows }: { shows?: Show[] }) {
               {t.fechas.listedHeadline}
             </h2>
             <div className={styles.list}>
-              {shows.map((show, i) => (
-                <div className={styles.row} key={`${show.city}-${show.date}-${i}`}>
+              {shows.map((show) => (
+                <Link href={`/fechas/${show.slug}`} className={styles.row} key={show.slug}>
                   <div>
-                    <div className={styles.city}>{show.city}</div>
-                    <div className={styles.venue}>{show.venue}</div>
+                    <span className={styles.city}>{show.city}</span>
+                    <span className={styles.venue}>{show.venue}</span>
                   </div>
                   <div className={styles.rowRight}>
-                    <span className={styles.date}>{show.date}</span>
-                    <a
-                      href={show.ticketsUrl ?? "#lista"}
-                      {...(show.ticketsUrl
-                        ? { target: "_blank", rel: "noopener" }
-                        : {})}
-                      className={`${ui.btn} ${ui.solid} ${styles.tickets}`}
-                    >
-                      {t.fechas.tickets}
-                    </a>
+                    <span className={styles.date}>{show.dateLabel[locale]}</span>
+                    <span className={`${ui.btn} ${ui.solid} ${styles.tickets}`}>
+                      {t.fechas.details}
+                    </span>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </>

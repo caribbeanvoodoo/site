@@ -48,14 +48,21 @@
   gap: 16px;
   background: var(--bg-panel);
   padding: 18px 20px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.row:hover {
+  background: #0b120f;
 }
 .city {
+  display: block;
   font-family: var(--font-body);
   font-weight: 600;
   color: #e9e2d4;
   font-size: 16px;
 }
 .venue {
+  display: block;
   font-size: 13px;
   color: var(--text-muted);
   margin-top: 3px;

@@ -61,6 +61,18 @@ export interface Dictionary {
     cta: string;
     listedHeadline: string;
     tickets: string;
+    details: string;
+    event: {
+      backToDates: string;
+      when: string;
+      where: string;
+      lineup: string;
+      cover: string;
+      free: string;
+      presentedBy: string;
+      timeTBA: string;
+      otherDates: string;
+    };
   };
   nosotros: {
     eyebrow: string;
@@ -142,6 +154,18 @@ export const dictionaries: Record<Locale, Dictionary> = {
       cta: "Avísame primero",
       listedHeadline: "Próximas fechas",
       tickets: "Boletos",
+      details: "Ver",
+      event: {
+        backToDates: "← Todas las fechas",
+        when: "Cuándo",
+        where: "Dónde",
+        lineup: "Alineación",
+        cover: "Cover",
+        free: "Sin cover",
+        presentedBy: "Presenta",
+        timeTBA: "Horario por confirmar",
+        otherDates: "Otras fechas",
+      },
     },
     nosotros: {
       eyebrow: "Nosotros",
@@ -221,6 +245,18 @@ export const dictionaries: Record<Locale, Dictionary> = {
       cta: "Notify me first",
       listedHeadline: "Upcoming dates",
       tickets: "Tickets",
+      details: "View",
+      event: {
+        backToDates: "← All dates",
+        when: "When",
+        where: "Where",
+        lineup: "Lineup",
+        cover: "Cover",
+        free: "No cover",
+        presentedBy: "Presented by",
+        timeTBA: "Time to be confirmed",
+        otherDates: "Other dates",
+      },
     },
     nosotros: {
       eyebrow: "About",
