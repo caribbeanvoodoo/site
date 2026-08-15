@@ -47,12 +47,14 @@ export default async function EventRoute({
   if (!show) notFound();
 
   // MusicEvent structured data — this is what earns the rich Google event card.
+  // Omit `offers` entirely when the price isn't announced (never state a price
+  // we don't have).
   const offers =
-    show.cover === "free"
-      ? { "@type": "Offer", price: "0", priceCurrency: "MXN", availability: "https://schema.org/InStock" }
+    show.cover === "tba"
+      ? undefined
       : {
           "@type": "Offer",
-          price: String(show.cover),
+          price: show.cover === "free" ? "0" : String(show.cover),
           priceCurrency: "MXN",
           availability: "https://schema.org/InStock",
         };

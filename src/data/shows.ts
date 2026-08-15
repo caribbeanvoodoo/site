@@ -22,8 +22,8 @@ export interface Show {
   timeLabel: string;
   presentedBy?: string;
   lineup?: string[];
-  /** Cover charge: a MXN amount, or "free". */
-  cover: number | "free";
+  /** Cover charge: a MXN amount, "free", or "tba" (not announced yet). */
+  cover: number | "free" | "tba";
   /** One or two sentences, brand voice, per locale. */
   description: { es: string; en: string };
   /** Poster/flyer under /assets/events. Optional — page degrades gracefully. */
@@ -95,23 +95,21 @@ export const shows: Show[] = [
     },
   },
   {
-    slug: "rockstar-fest-leon-oct-2026",
-    name: "Caribbean Voodoo en Rockstar Fest Vol. 03 — León",
-    city: "León, Gto.",
-    venue: "Rockstar Fest Vol. 03 — Velaria de la Feria",
-    address: "Velaria de la Feria, León, Guanajuato, México", // TODO(address): full street address
-    startDateTime: "2026-10-31T00:00:00-06:00",
-    timeTBA: true,
-    dateLabel: { es: "31 oct", en: "Oct 31" },
-    timeLabel: "",
-    presentedBy: "Rockstar Production",
+    slug: "mora-mora-cancun-ago-2026",
+    name: "Caribbean Voodoo en Cancún — Mora Mora",
+    city: "Cancún, Q. Roo",
+    venue: "Mora Mora",
+    address: "Avenida Palenque 10, SM 62, MZ 5, Lote 24, 77500 Cancún, Quintana Roo, México",
+    startDateTime: "2026-08-29T20:00:00-05:00",
+    dateLabel: { es: "29 ago", en: "Aug 29" },
+    timeLabel: "8:00 PM",
     lineup: ["Caribbean Voodoo"],
-    cover: "free",
+    cover: "tba",
     description: {
-      es: "Caribbean Voodoo se suma a Rockstar Fest Vol. 03 en la Velaria de la Feria de León. Más detalles muy pronto.",
-      en: "Caribbean Voodoo joins Rockstar Fest Vol. 03 at Velaria de la Feria in León. More details soon.",
+      es: "Caribbean Voodoo en vivo en Cancún, en Mora Mora. Una noche de rock and roll crudo y potente. Sábado 29 de agosto.",
+      en: "Caribbean Voodoo live in Cancún, at Mora Mora. A night of raw, powerful rock and roll. Saturday, August 29.",
     },
-    flyer: undefined, // TODO(flyer): /assets/events/rockstar-fest.jpg
+    flyer: undefined, // TODO(flyer): /assets/events/mora-mora-cancun.jpg
     cta: {
       href: "/#lista",
       label: { es: "Avísame primero", en: "Notify me first" },

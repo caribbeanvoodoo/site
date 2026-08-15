@@ -30,7 +30,7 @@ export function EventPage({ show }: { show: Show; whatsappUrl: string }) {
   const dateStr = formatDate(show.startDateTime, locale);
   const when = show.timeTBA ? `${dateStr} · ${e.timeTBA}` : `${dateStr} · ${show.timeLabel}`;
   const coverStr =
-    show.cover === "free" ? e.free : `$${show.cover} MXN`;
+    show.cover === "free" ? e.free : show.cover === "tba" ? e.coverTBA : `$${show.cover} MXN`;
   const otherShows = shows.filter((s) => s.slug !== show.slug);
 
   return (

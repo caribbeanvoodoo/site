@@ -69,6 +69,7 @@ export interface Dictionary {
       lineup: string;
       cover: string;
       free: string;
+      coverTBA: string;
       presentedBy: string;
       timeTBA: string;
       otherDates: string;
@@ -162,6 +163,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
         lineup: "Alineación",
         cover: "Cover",
         free: "Sin cover",
+        coverTBA: "Por confirmar",
         presentedBy: "Presenta",
         timeTBA: "Horario por confirmar",
         otherDates: "Otras fechas",
@@ -253,6 +255,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
         lineup: "Lineup",
         cover: "Cover",
         free: "No cover",
+        coverTBA: "To be confirmed",
         presentedBy: "Presented by",
         timeTBA: "Time to be confirmed",
         otherDates: "Other dates",
