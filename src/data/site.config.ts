@@ -39,14 +39,14 @@ export const siteConfig = {
    * newest-first and it silently embedded an unrelated 2020 video, which
    * contradicted the section copy.
    *
-   * Currently: "Caribbean Voodoo - No Sé Quién Soy" (official video).
-   * TODO(band): swap `videoId` for the "en vivo desde el jardín" live session
-   * once it is filmed and published — and update `ver.*` copy in
+   * Currently: "Kamikaze" (official video, first single from the 2026 concept
+   * album DarkPsycho Metamorphosis).
+   * To swap: change `videoId` here and update the `ver.*` copy in
    * src/i18n/dictionaries.ts to match. That is the only change needed.
    */
   video: {
-    videoId: "tZfmBeuP4oc",
-    caption: "no sé quién soy · video oficial",
+    videoId: "xUW1N8X0d70",
+    caption: "kamikaze · video oficial",
   },
 
   /** Band's YouTube channel. */

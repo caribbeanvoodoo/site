@@ -81,10 +81,80 @@
   border-color: rgba(224, 179, 76, 0.5);
 }
 
+/* Tracklist for the featured album. */
+.tracklist {
+  margin-top: 24px;
+}
+.tracklistLabel {
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.tracks {
+  list-style: none;
+  counter-reset: track;
+  margin: 12px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2px 24px;
+}
+.track {
+  counter-increment: track;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text-body);
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(224, 179, 76, 0.08);
+}
+.track::before {
+  content: counter(track, decimal-leading-zero);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  min-width: 22px;
+}
+
+/* Divider label before previous releases. */
+.previousLabel {
+  margin-top: 64px;
+  padding-top: 26px;
+  border-top: 1px solid rgba(224, 179, 76, 0.14);
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Previous releases render a touch smaller and more subdued. */
+.gridSecondary {
+  margin-top: 24px;
+}
+.gridSecondary .coverWrap {
+  max-width: 320px;
+}
+.gridSecondary .headline {
+  font-size: clamp(30px, 6vw, 44px);
+}
+
 /* Two columns from tablet up. */
 @media (min-width: 720px) {
   .grid {
     grid-template-columns: minmax(0, 420px) 1fr;
     gap: 44px;
+  }
+  .gridSecondary {
+    grid-template-columns: minmax(0, 320px) 1fr;
+  }
+  .tracks {
+    grid-template-columns: 1fr 1fr;
   }
 }

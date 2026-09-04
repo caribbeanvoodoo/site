@@ -26,6 +26,8 @@ export interface Dictionary {
     youtube: string;
     appleMusic: string;
     more: string;
+    tracklist: string;
+    previousRelease: string;
   };
   ver: {
     eyebrow: string;
@@ -119,11 +121,13 @@ export const dictionaries: Record<Locale, Dictionary> = {
       youtube: "YouTube",
       appleMusic: "Apple Music",
       more: "Más plataformas",
+      tracklist: "Canciones",
+      previousRelease: "Álbum anterior",
     },
     ver: {
       eyebrow: "Ver",
-      headline: "No Sé Quién Soy",
-      copy: "Nuestro video oficial. Crudo y potente, como suena la banda en vivo. La sesión en el jardín llega pronto.",
+      headline: "Kamikaze",
+      copy: "El primer video de DarkPsycho Metamorphosis, nuestro nuevo álbum conceptual. Crudo y potente, como suena la banda en vivo.",
       playAria: (title) => `Reproducir: ${title}`,
     },
     lista: {
@@ -211,11 +215,13 @@ export const dictionaries: Record<Locale, Dictionary> = {
       youtube: "YouTube",
       appleMusic: "Apple Music",
       more: "More platforms",
+      tracklist: "Tracklist",
+      previousRelease: "Previous release",
     },
     ver: {
       eyebrow: "Watch",
-      headline: "No Sé Quién Soy",
-      copy: "Our official video. Raw and powerful, the way the band sounds live. The session in the garden is coming soon.",
+      headline: "Kamikaze",
+      copy: "The first video from DarkPsycho Metamorphosis, our new concept album. Raw and powerful, the way the band sounds live.",
       playAria: (title) => `Play: ${title}`,
     },
     lista: {
