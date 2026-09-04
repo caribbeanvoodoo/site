@@ -52,9 +52,10 @@ export const albums: Album[] = [
       "Psicopata",
     ],
     streaming: {
-      spotify: KAMIKAZE_HYPERFOLLOW,
-      youtube: YOUTUBE_CHANNEL,
-      appleMusic: KAMIKAZE_HYPERFOLLOW,
+      spotify: "https://open.spotify.com/album/3BlwqSrof10sdlwqvKhOFu",
+      youtube:
+        "https://www.youtube.com/watch?v=xUW1N8X0d70&list=RDxUW1N8X0d70&start_radio=1",
+      appleMusic: "https://music.apple.com/us/album/kamikaze-single/6801705493",
       more: KAMIKAZE_HYPERFOLLOW,
     },
   },
