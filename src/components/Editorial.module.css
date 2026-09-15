@@ -1,0 +1,77 @@
+.content {
+  margin-top: 28px;
+}
+.content h2 {
+  font-family: var(--font-display);
+  color: var(--gold);
+  font-size: clamp(24px, 4vw, 34px);
+  line-height: 1.15;
+  margin: 36px 0 14px;
+}
+.content p,
+.content li {
+  color: var(--text-body);
+  line-height: 1.7;
+  font-size: 16px;
+}
+.content a {
+  color: var(--gold);
+  text-underline-offset: 4px;
+}
+.content img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 440px;
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius);
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 24px 0;
+}
+.actions a {
+  padding: 12px 18px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+.actions a:first-child {
+  color: var(--gold-ink);
+}
+.player {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border-frame);
+  border-radius: var(--radius);
+}
+.list {
+  padding-left: 24px;
+}
+.memberList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  padding: 1px;
+  background: var(--border-hairline);
+}
+.member {
+  background: var(--bg-black);
+  padding: 20px 12px;
+}
+.member dt {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.member dd {
+  margin: 8px 0 0;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+@media (max-width: 420px) {
+  .memberList {
+    grid-template-columns: 1fr;
+  }
+}

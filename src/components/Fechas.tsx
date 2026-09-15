@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { shows as defaultShows, type Show } from "@/data/shows";
+import { type Show } from "@/data/shows";
+import { routes, showPath } from "@/i18n/routes";
 import { useLocale } from "@/i18n/LocaleContext";
 import { Eyebrow } from "./Eyebrow";
 import ui from "./ui.module.css";
@@ -13,7 +14,7 @@ import styles from "./Fechas.module.css";
  *   - has shows -> "Próximas fechas" list, each row linking to its event page
  * Pass `shows` to override the default data source.
  */
-export function Fechas({ shows = defaultShows }: { shows?: Show[] }) {
+export function Fechas({ shows = [] }: { shows?: Show[] }) {
   const { locale, t } = useLocale();
   const hasShows = shows.length > 0;
 
@@ -24,26 +25,39 @@ export function Fechas({ shows = defaultShows }: { shows?: Show[] }) {
 
         {!hasShows ? (
           <>
-            <h2 className={`${ui.headline} ${styles.headline}`}>{t.fechas.emptyHeadline}</h2>
+            <h2 className={`${ui.headline} ${styles.headline}`}>
+              {t.fechas.emptyHeadline}
+            </h2>
             <p className={styles.copy}>{t.fechas.emptyCopy}</p>
-            <a href="#lista" className={`${ui.btn} ${ui.ghost} ${styles.cta}`}>
+            <a
+              href={`${routes.home[locale]}#lista`}
+              className={`${ui.btn} ${ui.ghost} ${styles.cta}`}
+            >
               {t.fechas.cta}
             </a>
           </>
         ) : (
           <>
-            <h2 className={`${ui.headline} ${styles.headline} ${styles.headlineListed}`}>
+            <h2
+              className={`${ui.headline} ${styles.headline} ${styles.headlineListed}`}
+            >
               {t.fechas.listedHeadline}
             </h2>
             <div className={styles.list}>
               {shows.map((show) => (
-                <Link href={`/fechas/${show.slug}`} className={styles.row} key={show.slug}>
+                <Link
+                  href={showPath(show.slug, locale)}
+                  className={styles.row}
+                  key={show.slug}
+                >
                   <div>
                     <span className={styles.city}>{show.city}</span>
                     <span className={styles.venue}>{show.venue}</span>
                   </div>
                   <div className={styles.rowRight}>
-                    <span className={styles.date}>{show.dateLabel[locale]}</span>
+                    <span className={styles.date}>
+                      {show.dateLabel[locale]}
+                    </span>
                     <span className={`${ui.btn} ${ui.solid} ${styles.tickets}`}>
                       {t.fechas.details}
                     </span>
@@ -53,6 +67,13 @@ export function Fechas({ shows = defaultShows }: { shows?: Show[] }) {
             </div>
           </>
         )}
+        <p className={styles.copy}>
+          <a className={styles.archive} href={routes.shows[locale]}>
+            {locale === "es"
+              ? "Todas las fechas y archivo"
+              : "All shows and archive"}
+          </a>
+        </p>
       </div>
     </section>
   );

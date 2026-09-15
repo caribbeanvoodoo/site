@@ -1,4 +1,5 @@
 .section {
+  overflow: clip;
   position: relative;
   background: var(--bg-panel);
   padding: 88px 26px;

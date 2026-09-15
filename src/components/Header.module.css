@@ -34,6 +34,10 @@
   gap: 5px;
 }
 .langBtn {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: none;
   border: none;
   /* Meets the 24x24 minimum target size without changing the visual weight. */
@@ -48,7 +52,7 @@
   cursor: pointer;
   transition: color 0.2s;
 }
-.langBtn[aria-pressed="true"] {
+.langBtn[aria-current="page"] {
   color: var(--gold);
 }
 .langBtn:hover {
@@ -70,7 +74,9 @@
   border: 1.5px solid rgba(224, 179, 76, 0.55);
   padding: 9px 15px;
   border-radius: var(--radius);
-  transition: background 0.2s, color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s;
 }
 .cta:hover {
   background: var(--gold);

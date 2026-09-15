@@ -14,10 +14,15 @@ export function Prensa() {
     <section id="prensa" className={styles.section}>
       <div className={styles.wrap}>
         <Eyebrow rotate={2}>{t.prensa.eyebrow}</Eyebrow>
-        <h2 className={`${ui.headline} ${styles.headline}`}>{t.prensa.headline}</h2>
+        <h2 className={`${ui.headline} ${styles.headline}`}>
+          {t.prensa.headline}
+        </h2>
         <p className={styles.copy}>{t.prensa.copy}</p>
         <div className={styles.actions}>
-          <a href={`mailto:${contact.email}`} className={`${ui.btn} ${ui.solid} ${styles.btn}`}>
+          <a
+            href={`mailto:${contact.email}`}
+            className={`${ui.btn} ${ui.solid} ${styles.btn}`}
+          >
             {t.prensa.contacto}
           </a>
           <a
@@ -33,7 +38,9 @@ export function Prensa() {
           <a href={`mailto:${contact.email}`} className={styles.contactLink}>
             {contact.email}
           </a>
-          &nbsp;·&nbsp;
+          <span className={styles.separator} aria-hidden="true">
+            ·
+          </span>
           <a
             href={contact.whatsappUrl}
             target="_blank"

@@ -7,7 +7,10 @@ export function Ver() {
 
   return (
     <section id="ver" className={styles.section}>
-      <VerContent videoId={video.videoId} caption={video.caption} />
+      <VerContent
+        videoId={video.videoId}
+        caption={{ es: video.caption, en: video.captionEn }}
+      />
     </section>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { musicPath } from "@/i18n/routes";
 import { track } from "@vercel/analytics";
 import { albums, type Album } from "@/data/albums";
 import { useLocale } from "@/i18n/LocaleContext";
@@ -29,7 +30,14 @@ function AlbumBlock({ album, featured }: { album: Album; featured: boolean }) {
         />
       </div>
       <div>
-        <h3 className={`${ui.headline} ${styles.headline}`}>{album.title}</h3>
+        <h3 className={`${ui.headline} ${styles.headline}`}>
+          <a
+            href={musicPath(album.slug, locale)}
+            style={{ color: "inherit", textDecoration: "none" }}
+          >
+            {album.title}
+          </a>
+        </h3>
         <div className={styles.label}>{album.label[locale]}</div>
         <p className={styles.copy}>{album.copy[locale]}</p>
 
@@ -46,6 +54,13 @@ function AlbumBlock({ album, featured }: { album: Album; featured: boolean }) {
           </div>
         )}
 
+        {!album.releaseDate && (
+          <p className={styles.copy}>
+            {locale === "es"
+              ? "Escucha el sencillo Kamikaze:"
+              : "Listen to the single Kamikaze:"}
+          </p>
+        )}
         <div className={styles.pills}>
           <a
             href={album.streaming.spotify}
@@ -102,7 +117,9 @@ export function Escuchar() {
 
         {rest.length > 0 && (
           <>
-            <div className={styles.previousLabel}>{t.escuchar.previousRelease}</div>
+            <div className={styles.previousLabel}>
+              {t.escuchar.previousRelease}
+            </div>
             {rest.map((album) => (
               <AlbumBlock key={album.id} album={album} featured={false} />
             ))}

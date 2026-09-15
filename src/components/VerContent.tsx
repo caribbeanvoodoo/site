@@ -11,9 +11,9 @@ export function VerContent({
   caption,
 }: {
   videoId: string;
-  caption: string;
+  caption: { es: string; en: string };
 }) {
-  const { t } = useLocale();
+  const { locale, t } = useLocale();
 
   return (
     <div className={styles.wrap}>
@@ -23,7 +23,7 @@ export function VerContent({
 
       <VerPlayer
         videoId={videoId}
-        caption={caption}
+        caption={caption[locale]}
         title={t.ver.headline}
         playAria={t.ver.playAria(t.ver.headline)}
       />

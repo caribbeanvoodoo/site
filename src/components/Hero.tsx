@@ -30,11 +30,18 @@ export function Hero() {
         />
         <p className={styles.ethos}>{t.hero.ethos}</p>
         <p className={styles.tagline}>{t.hero.tagline}</p>
+        <p className={styles.positioning}>{t.hero.positioning}</p>
         <div className={styles.actions}>
-          <a href="#escuchar" className={`${ui.btn} ${ui.solid} ${styles.btnLg}`}>
+          <a
+            href="#escuchar"
+            className={`${ui.btn} ${ui.solid} ${styles.btnLg}`}
+          >
             {t.hero.escuchar}
           </a>
-          <a href="#lista" className={`${ui.btn} ${ui.ghost} ${styles.btnLg} ${styles.btnLgGhost}`}>
+          <a
+            href="#lista"
+            className={`${ui.btn} ${ui.ghost} ${styles.btnLg} ${styles.btnLgGhost}`}
+          >
             {t.hero.lista}
           </a>
         </div>

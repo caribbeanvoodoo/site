@@ -11,6 +11,7 @@
   filter: drop-shadow(0 0 16px rgba(40, 175, 150, 0.35));
 }
 .social {
+  flex-wrap: wrap;
   display: flex;
   justify-content: center;
   gap: 22px;

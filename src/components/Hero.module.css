@@ -51,7 +51,9 @@
   /* Intrinsic width/height attrs are set on the <img> to reserve space and
      avoid layout shift; height:auto keeps the aspect ratio. */
   height: auto;
-  filter: drop-shadow(0 0 30px rgba(40, 175, 150, calc(0.6 * var(--cvglow, 1))));
+  filter: drop-shadow(
+    0 0 30px rgba(40, 175, 150, calc(0.6 * var(--cvglow, 1)))
+  );
 }
 
 .ethos {
@@ -109,4 +111,12 @@
 }
 .scrollCue .arrow {
   font-size: 15px;
+}
+
+.positioning {
+  max-width: 440px;
+  margin: 14px auto 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-body);
 }

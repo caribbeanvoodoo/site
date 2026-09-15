@@ -4,7 +4,7 @@ import Link from "next/link";
 import { track } from "@vercel/analytics";
 import type { Show } from "@/data/shows";
 import { useLocale } from "@/i18n/LocaleContext";
-import { shows } from "@/data/shows";
+import { routes, showPath } from "@/i18n/routes";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import ui from "./ui.module.css";
@@ -23,15 +23,30 @@ function formatDate(iso: string, locale: "es" | "en"): string {
   }).format(new Date(Date.UTC(y, m - 1, d)));
 }
 
-export function EventPage({ show }: { show: Show; whatsappUrl: string }) {
+export function EventPage({
+  show,
+  past,
+  otherShows,
+}: {
+  show: Show;
+  past: boolean;
+  otherShows: Show[];
+}) {
   const { locale, t } = useLocale();
   const e = t.fechas.event;
 
   const dateStr = formatDate(show.startDateTime, locale);
-  const when = show.timeTBA ? `${dateStr} · ${e.timeTBA}` : `${dateStr} · ${show.timeLabel}`;
+  const when = show.timeTBA
+    ? `${dateStr} · ${e.timeTBA}`
+    : `${dateStr} · ${show.timeLabel}`;
   const coverStr =
-    show.cover === "free" ? e.free : show.cover === "tba" ? e.coverTBA : `$${show.cover} MXN`;
-  const otherShows = shows.filter((s) => s.slug !== show.slug);
+    show.cover === "free"
+      ? e.free
+      : show.cover === "tba"
+        ? e.coverTBA
+        : `$${show.cover} MXN`;
+  const unavailable =
+    past || show.status === "cancelled" || show.status === "postponed";
 
   return (
     <>
@@ -39,14 +54,27 @@ export function EventPage({ show }: { show: Show; whatsappUrl: string }) {
       <main className={styles.page}>
         <div className={styles.glow} aria-hidden="true" />
         <div className={styles.inner}>
-          <Link href="/#fechas" className={styles.back}>
+          <Link href={routes.shows[locale]} className={styles.back}>
             {e.backToDates}
           </Link>
 
           <div className={styles.eyebrow}>
             {show.dateLabel[locale]} · {show.city}
           </div>
-          <h1 className={styles.headline}>{show.venue}</h1>
+          <h1 className={styles.headline}>Caribbean Voodoo · {show.venue}</h1>
+          {past && (
+            <p className={styles.desc}>
+              {locale === "es"
+                ? "Archivo · Esta fecha ya pasó."
+                : "Archive · This date has passed."}
+            </p>
+          )}
+          {show.status === "cancelled" && (
+            <p>{locale === "es" ? "Cancelado" : "Cancelled"}</p>
+          )}
+          {show.status === "postponed" && (
+            <p>{locale === "es" ? "Pospuesto" : "Postponed"}</p>
+          )}
           <p className={styles.desc}>{show.description[locale]}</p>
 
           {show.flyer && (
@@ -88,12 +116,20 @@ export function EventPage({ show }: { show: Show; whatsappUrl: string }) {
           </dl>
 
           <a
-            href={show.cta.href}
-            {...(show.cta.external ? { target: "_blank", rel: "noopener" } : {})}
+            href={
+              unavailable
+                ? `${routes.home[locale]}#lista`
+                : show.cta.href.startsWith("/#")
+                  ? `${routes.home[locale]}${show.cta.href.slice(1)}`
+                  : show.cta.href
+            }
+            {...(!unavailable && show.cta.external
+              ? { target: "_blank", rel: "noopener" }
+              : {})}
             onClick={() => track("event_cta", { slug: show.slug })}
             className={`${ui.btn} ${ui.solid} ${styles.cta}`}
           >
-            {show.cta.label[locale]}
+            {unavailable ? t.fechas.cta : show.cta.label[locale]}
           </a>
 
           {otherShows.length > 0 && (
@@ -101,8 +137,14 @@ export function EventPage({ show }: { show: Show; whatsappUrl: string }) {
               <div className={styles.otherLabel}>{e.otherDates}</div>
               <div className={styles.otherList}>
                 {otherShows.map((s) => (
-                  <Link key={s.slug} href={`/fechas/${s.slug}`} className={styles.otherLink}>
-                    <span className={styles.otherDate}>{s.dateLabel[locale]}</span>
+                  <Link
+                    key={s.slug}
+                    href={showPath(s.slug, locale)}
+                    className={styles.otherLink}
+                  >
+                    <span className={styles.otherDate}>
+                      {s.dateLabel[locale]}
+                    </span>
                     {s.venue} — {s.city}
                   </Link>
                 ))}

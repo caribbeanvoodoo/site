@@ -15,6 +15,7 @@ export interface Dictionary {
   hero: {
     ethos: string;
     tagline: string;
+    positioning: string;
     escuchar: string;
     lista: string;
     scrollCue: string;
@@ -110,9 +111,11 @@ export const dictionaries: Record<Locale, Dictionary> = {
     hero: {
       ethos: "Pertenecemos a un planeta lejano, las Serpientes son un dios",
       tagline: "Rock and Roll from Tulum",
+      positioning:
+        "Caribbean Voodoo es una banda de rock psicodélico nacida en Tulum, México.",
       escuchar: "Escuchar",
       lista: "Únete a la lista",
-      scrollCue: "Serpientes · 2025",
+      scrollCue: "Kamikaze · 2026",
     },
     escuchar: {
       eyebrow: "Escuchar",
@@ -127,7 +130,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
     ver: {
       eyebrow: "Ver",
       headline: "Kamikaze",
-      copy: "El primer video de DarkPsycho Metamorphosis, nuestro nuevo álbum conceptual. Crudo y potente, como suena la banda en vivo.",
+      copy: "El primer video de DarkPsycho Metamorphosis, nuestro próximo álbum conceptual. Crudo y potente, como suena la banda en vivo.",
       playAria: (title) => `Reproducir: ${title}`,
     },
     lista: {
@@ -139,13 +142,15 @@ export const dictionaries: Record<Locale, Dictionary> = {
       phoneLabel: "Teléfono para SMS",
       phoneOptional: "(opcional)",
       phonePlaceholder: "+52 ...",
-      consent: "Acepto recibir correos y mensajes de Caribbean Voodoo. Puedo salir del culto cuando quiera.",
+      consent:
+        "Acepto recibir correos y mensajes de Caribbean Voodoo. Puedo salir del culto cuando quiera.",
       submit: "Unirme",
       submitting: "Enviando…",
       privacy:
         "Usamos tu correo y teléfono solo para enviarte noticias de la banda. Guardamos tus datos en Klaviyo y nunca los vendemos. Puedes darte de baja en cualquier momento desde cualquier mensaje. Pueden aplicar tarifas de mensajes y datos.",
       confirmScript: "Ya eres de los nuestros",
-      confirmCopy: "Serás de los primeros en recibir el nuevo álbum, el cortometraje y las primeras fechas. Bienvenido a Caribbean Voodoo.",
+      confirmCopy:
+        "Serás de los primeros en recibir el nuevo álbum, el cortometraje y las primeras fechas. Bienvenido a Caribbean Voodoo.",
       errors: {
         email: "Ingresa un correo válido",
         consent: "Confirma que aceptas unirte al culto",
@@ -155,7 +160,8 @@ export const dictionaries: Record<Locale, Dictionary> = {
     fechas: {
       eyebrow: "Fechas",
       emptyHeadline: "Nuevas fechas muy pronto",
-      emptyCopy: "La banda vuelve a la carretera. Sé de los primeros en saber dónde y cuándo.",
+      emptyCopy:
+        "La banda vuelve a la carretera. Sé de los primeros en saber dónde y cuándo.",
       cta: "Avísame primero",
       listedHeadline: "Próximas fechas",
       tickets: "Boletos",
@@ -176,7 +182,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
     nosotros: {
       eyebrow: "Nosotros",
       headline: "Nacidos en Tulum",
-      bio: "Caribbean Voodoo nació en febrero de 2020, antes de la pandemia, con el rock en la piel. Lo que empezó como covers se volvió sonido propio, crudo y potente, grabado en casa entre la selva. Cuatro almas, un mismo dios.",
+      bio: "Caribbean Voodoo nació en febrero de 2020, antes de la pandemia, con el rock en la piel. Lo que empezó como covers se volvió sonido propio, crudo y potente, grabado en casa entre la selva. Un mismo espíritu, un sonido propio.",
       roles: {
         vocals: "Voz",
         guitar: "Guitarra",
@@ -204,9 +210,11 @@ export const dictionaries: Record<Locale, Dictionary> = {
     hero: {
       ethos: "We belong to a planet far away, the Serpents are a god",
       tagline: "Rock and Roll from Tulum",
+      positioning:
+        "Caribbean Voodoo is a psychedelic rock band from Tulum, Mexico.",
       escuchar: "Listen",
       lista: "Join the list",
-      scrollCue: "Serpientes · 2025",
+      scrollCue: "Kamikaze · 2026",
     },
     escuchar: {
       eyebrow: "Listen",
@@ -221,7 +229,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
     ver: {
       eyebrow: "Watch",
       headline: "Kamikaze",
-      copy: "The first video from DarkPsycho Metamorphosis, our new concept album. Raw and powerful, the way the band sounds live.",
+      copy: "The first video from DarkPsycho Metamorphosis, our upcoming concept album. Raw and powerful, the way the band sounds live.",
       playAria: (title) => `Play: ${title}`,
     },
     lista: {
@@ -233,13 +241,15 @@ export const dictionaries: Record<Locale, Dictionary> = {
       phoneLabel: "Phone for SMS",
       phoneOptional: "(optional)",
       phonePlaceholder: "+1 ...",
-      consent: "I agree to receive emails and texts from Caribbean Voodoo. I can leave the cult whenever I want.",
+      consent:
+        "I agree to receive emails and texts from Caribbean Voodoo. I can leave the cult whenever I want.",
       submit: "Join",
       submitting: "Sending…",
       privacy:
         "We use your email and phone only to send you band news. Your details are stored in Klaviyo and never sold. You can unsubscribe at any time from any message. Message and data rates may apply.",
       confirmScript: "You're one of us now",
-      confirmCopy: "You'll be among the first to get the new album, the short film, and the first tour dates. Welcome to Caribbean Voodoo.",
+      confirmCopy:
+        "You'll be among the first to get the new album, the short film, and the first tour dates. Welcome to Caribbean Voodoo.",
       errors: {
         email: "Enter a valid email",
         consent: "Confirm you agree to join the cult",
@@ -249,7 +259,8 @@ export const dictionaries: Record<Locale, Dictionary> = {
     fechas: {
       eyebrow: "Dates",
       emptyHeadline: "New dates coming soon",
-      emptyCopy: "The band is hitting the road again. Be the first to know where and when.",
+      emptyCopy:
+        "The band is hitting the road again. Be the first to know where and when.",
       cta: "Notify me first",
       listedHeadline: "Upcoming dates",
       tickets: "Tickets",
@@ -270,7 +281,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
     nosotros: {
       eyebrow: "About",
       headline: "Born in Tulum",
-      bio: "Caribbean Voodoo was born in February 2020, right before the pandemic, with rock in its blood. What started as covers became its own sound — raw and powerful, recorded at home deep in the jungle. Four souls, one god.",
+      bio: "Caribbean Voodoo was born in February 2020, right before the pandemic, with rock in its blood. What started as covers became its own sound — raw and powerful, recorded at home deep in the jungle. One shared spirit, a sound of our own.",
       roles: {
         vocals: "Vocals",
         guitar: "Guitar",

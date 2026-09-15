@@ -39,6 +39,10 @@
   border-color: rgba(224, 179, 76, 0.5);
 }
 .contactLine {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
   font-size: 13px;
   color: var(--text-faint);
   margin-top: 24px;
@@ -51,4 +55,13 @@
 }
 .contactLink:hover {
   color: var(--gold);
+}
+
+@media (max-width: 420px) {
+  .contactLine {
+    flex-direction: column;
+  }
+  .separator {
+    display: none;
+  }
 }

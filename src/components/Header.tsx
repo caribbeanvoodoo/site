@@ -2,22 +2,25 @@
 
 import { track } from "@vercel/analytics";
 import { useLocale } from "@/i18n/LocaleContext";
-import type { Locale } from "@/i18n/dictionaries";
+import { usePathname } from "next/navigation";
+import { routes, translatePath } from "@/i18n/routes";
 import styles from "./Header.module.css";
 
 export function Header() {
-  const { locale, setLocale, t } = useLocale();
-
-  // Tells the band whether the English audience is real enough to keep
-  // maintaining a second set of copy.
-  function chooseLocale(next: Locale) {
-    if (next !== locale) track("locale_toggle", { to: next });
-    setLocale(next);
-  }
+  const { locale, t } = useLocale();
+  const pathname = usePathname();
 
   return (
     <header className={styles.header}>
-      <a href="/#portada" className={styles.logoLink} aria-label="Caribbean Voodoo — inicio">
+      <a
+        href={`${routes.home[locale]}#portada`}
+        className={styles.logoLink}
+        aria-label={
+          locale === "es"
+            ? "Caribbean Voodoo — inicio"
+            : "Caribbean Voodoo — home"
+        }
+      >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/assets/logo_gold.png"
@@ -28,28 +31,32 @@ export function Header() {
         />
       </a>
       <div className={styles.right}>
-        <div className={styles.langToggle} role="group" aria-label="Idioma / Language">
-          <button
-            type="button"
+        <div
+          className={styles.langToggle}
+          role="group"
+          aria-label="Idioma / Language"
+        >
+          <a
             className={styles.langBtn}
-            aria-pressed={locale === "es"}
-            onClick={() => chooseLocale("es")}
+            href={translatePath(pathname, "es")}
+            aria-current={locale === "es" ? "page" : undefined}
+            onClick={() => track("locale_toggle", { to: "es" })}
           >
             ES
-          </button>
+          </a>
           <span className={styles.langDivider} aria-hidden="true">
             ·
           </span>
-          <button
-            type="button"
+          <a
             className={styles.langBtn}
-            aria-pressed={locale === "en"}
-            onClick={() => chooseLocale("en")}
+            href={translatePath(pathname, "en")}
+            aria-current={locale === "en" ? "page" : undefined}
+            onClick={() => track("locale_toggle", { to: "en" })}
           >
             EN
-          </button>
+          </a>
         </div>
-        <a href="/#lista" className={styles.cta}>
+        <a href={`${routes.home[locale]}#lista`} className={styles.cta}>
           {t.header.cta}
         </a>
       </div>

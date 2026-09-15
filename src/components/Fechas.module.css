@@ -85,3 +85,8 @@
   letter-spacing: 0.08em;
   padding: 8px 14px;
 }
+
+.archive {
+  color: var(--gold);
+  text-underline-offset: 4px;
+}

@@ -1,85 +1,88 @@
-# Caribbean Voodoo — site
+# Caribbean Voodoo website
 
-Single-page site for Caribbean Voodoo, live at **https://caribbeanvoodoo.mx**.
-Recreated from the design handoff (`../design_handoff_caribbean_voodoo_site/`) as
-componentized Next.js code.
+Official site: **https://www.caribbeanvoodoo.mx**. The apex domain redirects here.
 
 ## Stack
-- **Next.js 15** (App Router) + **React 19** + **TypeScript**
-- **CSS Modules** + a design-token layer in `src/app/globals.css` (chosen over Tailwind
-  for pixel-faithful reproduction of the handoff's exact `clamp()` sizes, radial-gradient
-  glows, and letter-spacing tokens)
-- **Google Fonts** via `next/font/google`: Bagel Fat One, Kaushan Script, Work Sans
-- **Klaviyo** for email/SMS signup capture
-- **DistroKid HyperFollow** for streaming links
-- **Vercel Analytics** for traffic + conversion events
-- Custom lightweight **ES/EN toggle** (no routing, persisted per-visitor)
 
-## Run
+- Next.js 15 App Router, React 19 and TypeScript
+- CSS Modules and the original design-token layer
+- Bagel Fat One, Kaushan Script and Work Sans via next/font
+- Spanish and English rendered on separate URLs
+- Klaviyo signup capture and Vercel Analytics
+- GitHub → Vercel deployment; Namecheap domain
+
+## Development and validation
+
 ```bash
 npm install
-cp .env.local.example .env.local   # fill in Klaviyo keys, see below
-npm run dev      # http://localhost:3000
-npm run build    # production build
+cp .env.local.example .env.local
+npm run dev
+npm run lint
+npm run build
+npx playwright install chromium
+npm test
 ```
 
-## Structure
-- `src/app/page.tsx` — assembles the sections in spec order.
-- `src/app/layout.tsx` — metadata (`metadataBase`, OG/Twitter, canonical), `MusicGroup`
-  JSON-LD, fonts, Vercel Analytics.
-- `src/app/icon.png` / `apple-icon.png` — favicon + app icon (the "O with X" dead-eye mark).
-- `src/app/robots.ts` / `sitemap.ts` / `not-found.tsx` — SEO files and branded 404.
-- `src/components/` — one component + CSS Module per section. Shared primitives in
-  `ui.module.css` / `Eyebrow.tsx`.
-- `src/data/site.config.ts` — `SITE_URL` + all swappable links (streaming, video, press kit,
-  socials, contact incl. the `wa.me` click-to-chat URL).
-- `src/data/shows.ts` — Fechas data; empty array ⇒ "muy pronto" state, filled ⇒ dates list.
-- `src/lib/signup.ts` + `src/app/api/subscribe/route.ts` — signup submit → Klaviyo.
-- `src/i18n/` — ES/EN dictionaries + `useLocale()` (also keeps `<html lang>` in sync).
+To use an installed Chrome instead of Playwright's browser, set `CV_CHROME_PATH`
+to its executable when running the tests. Tests start a production server on port
+4321 and require a completed build. Signup tests do not send data to Klaviyo.
 
-## Analytics events
-Tracked via `@vercel/analytics` — enable **Web Analytics** in the Vercel project or nothing records.
-- `signup` (`withPhone`) — the core conversion
-- `streaming_click` (`platform`) — which DSP fans pick
-- `video_play` (`videoId`)
-- `locale_toggle` (`to`) — whether the EN audience is real
+## Content and routes
 
-## Klaviyo setup
-1. Klaviyo → Settings → API Keys → create a **private** key with profile/subscription write scope.
-2. Set `KLAVIYO_PRIVATE_API_KEY` and `KLAVIYO_LIST_ID` (see `.env.local.example`) locally in
-   `.env.local`, and in Vercel under Project → Settings → Environment Variables.
+- `/` and `/en`: original section order and signup centerpiece.
+- `/banda` and `/en/band`: biography and current roster.
+- `/musica/[slug]` and `/en/music/[slug]`: Kamikaze, DarkPsycho Metamorphosis and Serpientes.
+- `/fechas` and `/en/shows`: upcoming concerts and archive.
+- `/fechas/[slug]` and `/en/shows/[slug]`: individual concerts.
+- `/prensa` and `/en/press`: booking, official press kit and logo.
 
-Without these, `/api/subscribe` returns a clean 500 and the form shows a friendly error
-rather than crashing — but no signups are captured.
+`src/data/site.config.ts` controls the canonical host, contact, artist links,
+Kamikaze video and press-kit URL. `src/data/albums.ts` and `releases.ts` control music
+content. `src/data/shows.ts` controls concerts. Use verified full addresses and
+venue time offsets; update each item's `modified` date when its content changes.
 
-### SMS is not active yet
-No SMS sending number is configured, so Klaviyo rejects SMS subscriptions. The route handles
-this: it subscribes the email, **saves the phone on the profile**, and skips only the SMS
-consent — a phone number never costs you the email signup. Add a sending number in Klaviyo
-(Mexico/US) and it starts working with no code change.
+`src/components/HomePage.tsx` assembles the original homepage sections. Editorial
+pages reuse the established event-page styling and tokens. `src/lib/seo.ts`
+centralizes localized metadata and Schema.org graphs. `src/i18n/routes.ts` maps
+language counterparts. Middleware determines language from the URL; the root
+layout renders matching HTML and client context. No cookie or localStorage
+language choice overrides a URL.
 
-## The "Ver" video
-`siteConfig.video.videoId` is an **explicitly pinned** YouTube video, currently
-"No Sé Quién Soy". It is deliberately not auto-resolved — an earlier version fetched the
-channel's "latest" upload from RSS, but that feed is not reliably newest-first and it
-silently embedded an unrelated 2020 video. When the "en vivo desde el jardín" session is
-filmed, swap `videoId` and update the `ver.*` copy in `src/i18n/dictionaries.ts`.
+Public pages render on demand so upcoming shows become archived automatically.
+`src/lib/events.ts` uses the venue-local end of day when no end time is known.
+Past event pages stay accessible and stop displaying reservation buttons.
 
-## Deploying
-Pushes to `main` auto-deploy on Vercel. Note the local `gh`/git identity has no write access
-to `caribbeanvoodoo/site` over HTTPS — push with the repo's SSH deploy key:
+## Klaviyo and analytics
+
+Configure `KLAVIYO_PRIVATE_API_KEY` and `KLAVIYO_LIST_ID` in local/Vercel environment
+settings. Without them the signup endpoint returns an error rather than falsely
+confirming capture. Keep private keys out of source control.
+
+The existing route tries email + SMS, then email + phone, then email only so an
+SMS issue does not discard the email. SMS sender configuration, sender-domain
+authentication and current account settings must be verified in Klaviyo.
+
+Existing events include signup, streaming_click, video_play and locale_toggle.
+The new press page also tracks booking_click and presskit_download. Confirm that
+the Vercel plan/dashboard supports custom events before relying on those reports.
+The homepage player tracks its play click; the dedicated YouTube iframe does not
+claim to report video starts. No extra tracking provider is installed.
+
+## Deployment
+
+Pushes to main auto-deploy on Vercel. The existing SSH deploy key supports:
+
 ```bash
 GIT_SSH_COMMAND="ssh -i ~/.ssh/cv_site_deploy -o IdentitiesOnly=yes" \
   git push git@github.com:caribbeanvoodoo/site.git main:main
 ```
 
-## Still needs real values before launch
-1. **Rotate the Klaviyo API key** and update it in Vercel.
-2. **SMS sending number** in Klaviyo (phones are being captured meanwhile).
-3. **Domain-authenticate the Klaviyo sender** — sending from a `@gmail.com` address will land
-   in spam. Set up SPF/DKIM on `caribbeanvoodoo.mx`.
-4. **Klaviyo account "Website URL"** still says `.com`; should be `.mx`.
-5. **Clean band photo** — `band_bw.jpg` carries a "Meta AI" watermark bottom-right.
-6. **Real live-session video** when filmed (see above).
-7. **Tour dates** when booked → `src/data/shows.ts` (Fechas auto-switches layouts).
-8. `logo_gold.png` is a raster recreation — swap for a vector master if the band has one.
+The canonical host must agree with Vercel's primary host. See the SEO document
+before switching between apex and www. Preview \*.vercel.app hosts remain noindex.
+
+## SEO and outstanding account steps
+
+See [docs/SEO-IMPLEMENTATION.md](docs/SEO-IMPLEMENTATION.md) for the keyword/page
+map, metadata, sources, schema checks, Search Console instructions and 30/60/90-day
+measurement plan. This includes the current release/date/roster information still
+needing owner confirmation and manual artist-profile updates.

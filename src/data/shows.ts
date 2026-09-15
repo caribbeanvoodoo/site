@@ -3,6 +3,17 @@ import { siteConfig } from "./site.config";
 export interface Show {
   /** URL segment: /fechas/<slug> */
   slug: string;
+  modified: string;
+  endDateTime?: string;
+  status?: "scheduled" | "cancelled" | "postponed";
+  fullAddress?: {
+    streetAddress: string;
+    addressLocality: string;
+    addressRegion: string;
+    postalCode: string;
+    addressCountry: string;
+  };
+  ticketUrl?: string;
   /** Event name used in the page title and structured data. */
   name: string;
   city: string;
@@ -48,6 +59,7 @@ function reserva(text: string): string {
  */
 export const shows: Show[] = [
   {
+    modified: "2026-09-15",
     slug: "karunna-leon-ago-2026",
     name: "Caribbean Voodoo en Karunna — León",
     city: "León, Gto.",
@@ -73,6 +85,7 @@ export const shows: Show[] = [
     },
   },
   {
+    modified: "2026-09-15",
     slug: "rockstar-burger-leon-ago-2026",
     name: "Caribbean Voodoo en Rockstar Burger — León",
     city: "León, Gto.",
@@ -95,11 +108,20 @@ export const shows: Show[] = [
     },
   },
   {
+    modified: "2026-09-15",
     slug: "mora-mora-cancun-ago-2026",
     name: "Caribbean Voodoo en Cancún — Mora Mora",
     city: "Cancún, Q. Roo",
     venue: "Mora Mora",
-    address: "Avenida Palenque 10, SM 62, MZ 5, Lote 24, 77500 Cancún, Quintana Roo, México",
+    fullAddress: {
+      streetAddress: "Avenida Palenque 10, SM 62, MZ 5, Lote 24",
+      addressLocality: "Cancún",
+      addressRegion: "Quintana Roo",
+      postalCode: "77500",
+      addressCountry: "MX",
+    },
+    address:
+      "Avenida Palenque 10, SM 62, MZ 5, Lote 24, 77500 Cancún, Quintana Roo, México",
     startDateTime: "2026-08-29T20:00:00-05:00",
     dateLabel: { es: "29 ago", en: "Aug 29" },
     timeLabel: "8:00 PM",
