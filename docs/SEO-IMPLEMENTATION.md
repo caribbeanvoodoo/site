@@ -149,3 +149,13 @@ Remaining factual/account items: full DarkPsycho release date and correct full-a
 - Visual review: band page at mobile width and Kamikaze watch page on desktop; the YouTube player loaded the correct official video. A 24-combination viewport/page inspection found two pre-existing homepage overflow cases, corrected by containing the album glow and wrapping the contact line. The final narrow-screen regression passes.
 - General Schema.org type validation: passed via schema-dts/TypeScript. Google-hosted rich-result tests and Search Console indexing remain owner-side steps.
 - Source diff checked for credential patterns: no matches. Signup endpoint/form implementation and the committed press PDF are unchanged. No live Klaviyo profiles were created by these tests.
+
+### Completed production verification
+
+Implementation commit 4280cea was pushed to main and deployed by the existing GitHub → Vercel integration on September 15, 2026.
+
+- All 20 sitemap content URLs returned HTTP 200 with the expected language, self-canonical, reciprocal language alternatives, one H1 and no noindex directive.
+- Production robots.txt references the canonical sitemap. Unknown releases and the removed October 31 event return HTTP 404.
+- The public Schema.org validator fetched https://www.caribbeanvoodoo.mx/en/music/kamikaze and reported **0 errors, 0 warnings**. Its top-level results were WebPage and VideoObject, with the connected graph nested beneath them. This is not a Google indexing or rich-result eligibility guarantee.
+- HTTPS apex → HTTPS www: one 308 redirect, then 200. HTTP www → HTTPS www: one 308, then 200. HTTP apex → HTTPS apex → HTTPS www: two 308 redirects, then 200. Reducing this last legacy entry path to a single hop requires access to the Vercel domain/edge configuration; the saved CLI login is expired. All published internal, canonical, sitemap and artist-profile destination URLs already use the direct HTTPS www origin.
+- Google Search Console, Google Rich Results Test and Bing property actions remain outstanding. No search impressions, rankings or account analytics have been fabricated.
