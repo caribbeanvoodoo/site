@@ -50,28 +50,5 @@
 .list {
   padding-left: 24px;
 }
-.memberList {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  padding: 1px;
-  background: var(--border-hairline);
-}
-.member {
-  background: var(--bg-black);
-  padding: 20px 12px;
-}
-.member dt {
-  font-weight: 600;
-  color: var(--text-primary);
-}
-.member dd {
-  margin: 8px 0 0;
-  color: var(--text-muted);
-  font-size: 13px;
-}
-@media (max-width: 420px) {
-  .memberList {
-    grid-template-columns: 1fr;
-  }
-}
+.content h2 { text-transform: uppercase; }
+.pressLogo { filter: brightness(0); }

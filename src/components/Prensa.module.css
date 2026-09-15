@@ -3,7 +3,7 @@
   background: var(--bg-panel);
   padding: 88px 26px;
   scroll-margin-top: 60px;
-  border-top: 1px solid rgba(224, 179, 76, 0.08);
+  border-top: 1px solid var(--border-frame);
 }
 .wrap {
   max-width: 640px;
@@ -36,7 +36,7 @@
 }
 .btnGhost {
   padding: 13px 24px;
-  border-color: rgba(224, 179, 76, 0.5);
+  border-color: var(--border-frame);
 }
 .contactLine {
   display: flex;

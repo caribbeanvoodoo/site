@@ -137,8 +137,8 @@ export function releaseEntity(release: Album, locale: Locale) {
     albumReleaseType: `https://schema.org/${release.id === "kamikaze" ? "SingleRelease" : "AlbumRelease"}`,
     ...(release.releaseDate ? { datePublished: release.releaseDate } : {}),
     numTracks: release.tracks?.length,
-    // Only released recordings are asserted. The upcoming album's list is visible text.
-    ...(release.releaseDate
+    // Announced dates do not make the single links identities for the full album.
+    ...(release.releaseDate && !release.streamingIsSingle
       ? {
           track: release.tracks?.map((name, index) => ({
             "@type": "MusicRecording" as const,

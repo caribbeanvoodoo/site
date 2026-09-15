@@ -10,15 +10,6 @@ export function Lista() {
   return (
     <section id="lista" className={styles.section}>
       <div className={styles.glow} aria-hidden="true" />
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/assets/hecate_gold.png"
-        alt=""
-        aria-hidden="true"
-        className={styles.hecate}
-        loading="lazy"
-      />
-
       <div className={styles.inner}>
         <div className={styles.glyphs} aria-hidden="true">
           ✷ &nbsp;☾&nbsp; ⛧ &nbsp;☾&nbsp; ✷

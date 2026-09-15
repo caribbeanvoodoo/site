@@ -61,9 +61,12 @@
 .neutral {
   color: var(--text-primary);
   background: transparent;
-  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  border: 1.5px solid var(--border-hairline);
 }
 .neutral:hover {
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.5);
+  color: var(--rust);
+  border-color: var(--border-frame);
 }
+
+.headline { text-transform: uppercase; line-height: 1.12; }
+.eyebrow { font-size: 21px; line-height: 1.4; }

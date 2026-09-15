@@ -1,122 +1,37 @@
 .hero {
   position: relative;
-  min-height: calc(100vh - 56px);
+  min-height: 860px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   text-align: center;
-  padding: 70px 26px 90px;
-  scroll-margin-top: 64px;
+  padding: 76px 26px 260px;
+  scroll-margin-top: 72px;
   overflow: hidden;
+  background: linear-gradient(#e8d6bae8, #e8d6bae8), #e8d6ba url("/assets/press-kit/paper.webp") repeat;
 }
-
-.glow {
+.hero::before {
+  content: "";
   position: absolute;
-  top: 16%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(680px, 120vw);
-  height: min(680px, 120vw);
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(30, 150, 128, calc(0.5 * var(--cvglow, 1))) 0%,
-    rgba(18, 80, 72, calc(0.32 * var(--cvglow, 1))) 40%,
-    rgba(5, 6, 5, 0) 70%
-  );
-  filter: blur(6px);
-  pointer-events: none;
+  inset: auto 0 0;
+  height: 240px;
+  background: linear-gradient(to bottom, #e8d6ba, transparent 30%), url("/assets/press-kit/coast.webp") center 56% / cover;
 }
-
-.corner {
-  position: absolute;
-  top: 26px;
-  right: 26px;
-  color: rgba(224, 179, 76, 0.32);
-  font-size: 18px;
-  letter-spacing: 7px;
-}
-
-.inner {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 560px;
-}
-
-.logo {
-  width: min(340px, 82vw);
-  /* Intrinsic width/height attrs are set on the <img> to reserve space and
-     avoid layout shift; height:auto keeps the aspect ratio. */
-  height: auto;
-  filter: drop-shadow(
-    0 0 30px rgba(40, 175, 150, calc(0.6 * var(--cvglow, 1)))
-  );
-}
-
-.ethos {
-  font-family: var(--font-script);
-  color: var(--red-cursive);
-  font-size: clamp(20px, 5.4vw, 26px);
-  line-height: 1.35;
-  margin: 36px 0 0;
-  max-width: 420px;
-  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.7);
-}
-
-.tagline {
-  font-family: var(--font-body);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.34em;
-  font-size: 11px;
-  color: #cdbf9f;
-  margin-top: 26px;
-}
-
-.actions {
-  display: flex;
-  flex-direction: column;
-  gap: 13px;
-  width: 100%;
-  max-width: 300px;
-  margin-top: 42px;
-}
-
-.btnLg {
-  font-size: 15px;
-  letter-spacing: 0.09em;
-  padding: 16px;
-}
-.btnLgGhost {
-  padding: 15px;
-}
-
-.scrollCue {
-  position: absolute;
-  bottom: 26px;
-  left: 50%;
-  transform: translateX(-50%);
-  text-decoration: none;
-  color: rgba(205, 191, 159, 0.55);
-  font-size: 11px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-}
-.scrollCue .arrow {
-  font-size: 15px;
-}
-
-.positioning {
-  max-width: 440px;
-  margin: 14px auto 0;
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--text-body);
+.glow { display: none; }
+.corner { position: absolute; top: 22px; right: 26px; color: var(--rust); letter-spacing: 7px; }
+.inner { position: relative; display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 780px; }
+.logo { width: min(660px, 92%); height: auto; filter: brightness(0) saturate(100%) invert(15%) sepia(76%) saturate(3782%) hue-rotate(325deg) brightness(76%) contrast(101%); }
+.ethos { font-family: var(--font-script); color: var(--ink); font-size: clamp(20px, 4vw, 28px); line-height: 1.5; margin: 28px 0 0; max-width: 550px; }
+.tagline { font-weight: 600; text-transform: uppercase; letter-spacing: .24em; font-size: 11px; color: var(--rust); margin: 22px 0 0; }
+.positioning { max-width: 490px; margin: 12px auto 0; font-size: 14px; line-height: 1.6; color: var(--text-body); }
+.actions { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; width: 100%; margin-top: 28px; }
+.btnLg { font-size: 13px; letter-spacing: .08em; padding: 16px 26px; }
+.btnLgGhost { padding: 16px 26px; }
+.scrollCue { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); text-decoration: none; color: #fff5df; background: #29140fe8; padding: 10px 18px; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; display: flex; flex-direction: column; align-items: center; gap: 6px; white-space: nowrap; }
+.arrow { font-size: 15px; }
+@media (max-width: 600px) {
+  .hero { min-height: 770px; padding: 62px 24px 220px; }
+  .hero::before { height: 190px; }
+  .actions { flex-direction: column; max-width: 300px; }
 }

@@ -1,14 +1,14 @@
 .footer {
-  background: var(--bg-black);
+  background: linear-gradient(#eee3c9e8, #eee3c9e8), var(--bg-black) url("/assets/press-kit/paper.webp") repeat;
   padding: 52px 26px 44px;
   text-align: center;
-  border-top: 1px solid rgba(224, 179, 76, 0.1);
+  border-top: 1px solid var(--border-frame);
 }
 .logo {
   height: 38px;
   width: auto;
   opacity: 0.92;
-  filter: drop-shadow(0 0 16px rgba(40, 175, 150, 0.35));
+  filter: brightness(0);
 }
 .social {
   flex-wrap: wrap;
@@ -57,3 +57,5 @@
   color: var(--text-fineprint);
   margin-top: 14px;
 }
+
+.logo { height: 64px; }

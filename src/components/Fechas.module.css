@@ -35,8 +35,8 @@
   display: flex;
   flex-direction: column;
   gap: 1px;
-  background: rgba(224, 179, 76, 0.14);
-  border: 1px solid rgba(224, 179, 76, 0.14);
+  background: var(--border-frame);
+  border: 1px solid var(--border-frame);
   border-radius: 4px;
   overflow: hidden;
   text-align: left;
@@ -52,13 +52,13 @@
   transition: background 0.2s;
 }
 .row:hover {
-  background: #0b120f;
+  background: #e2d4b7;
 }
 .city {
   display: block;
   font-family: var(--font-body);
   font-weight: 600;
-  color: #e9e2d4;
+  color: var(--text-primary);
   font-size: 16px;
 }
 .venue {

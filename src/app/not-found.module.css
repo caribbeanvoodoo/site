@@ -6,26 +6,11 @@
   justify-content: center;
   text-align: center;
   padding: 70px 26px;
-  background: var(--bg-black);
+  background: var(--bg-black) url("/assets/press-kit/paper.webp") repeat;
   overflow: hidden;
 }
 
-.glow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: min(680px, 120vw);
-  height: min(680px, 120vw);
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(30, 150, 128, calc(0.42 * var(--cvglow, 1))) 0%,
-    rgba(18, 80, 72, calc(0.22 * var(--cvglow, 1))) 42%,
-    rgba(5, 6, 5, 0) 70%
-  );
-  pointer-events: none;
-}
+.glow { display: none; }
 
 .inner {
   position: relative;
@@ -33,7 +18,7 @@
 }
 
 .glyphs {
-  color: rgba(224, 179, 76, 0.7);
+  color: var(--border-frame);
   font-size: 15px;
   letter-spacing: 9px;
 }

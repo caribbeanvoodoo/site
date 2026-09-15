@@ -4,7 +4,7 @@
   background: var(--bg-panel);
   padding: 88px 26px;
   scroll-margin-top: 60px;
-  border-top: 1px solid rgba(224, 179, 76, 0.08);
+  border-top: 1px solid var(--border-frame);
 }
 
 .wrap {
@@ -26,23 +26,13 @@
   max-width: 420px;
   width: 100%;
 }
-.coverGlow {
-  position: absolute;
-  inset: -8%;
-  background: radial-gradient(
-    circle,
-    rgba(30, 150, 128, calc(0.4 * var(--cvglow, 1))) 0%,
-    rgba(5, 6, 5, 0) 68%
-  );
-  filter: blur(4px);
-  pointer-events: none;
-}
+.coverGlow { display: none; }
 .cover {
   position: relative;
   width: 100%;
   height: auto;
   display: block;
-  border: 1px solid rgba(224, 179, 76, 0.2);
+  border: 1px solid var(--border-frame);
   border-radius: 2px;
 }
 
@@ -79,7 +69,7 @@
 }
 .pillGhost {
   padding: 12px 20px;
-  border-color: rgba(224, 179, 76, 0.5);
+  border-color: var(--border-frame);
 }
 
 /* Tracklist for the featured album. */
@@ -112,7 +102,7 @@
   font-size: 15px;
   color: var(--text-body);
   padding: 5px 0;
-  border-bottom: 1px solid rgba(224, 179, 76, 0.08);
+  border-bottom: 1px solid var(--border-frame);
 }
 .track::before {
   content: counter(track, decimal-leading-zero);
@@ -126,7 +116,7 @@
 .previousLabel {
   margin-top: 64px;
   padding-top: 26px;
-  border-top: 1px solid rgba(224, 179, 76, 0.14);
+  border-top: 1px solid var(--border-frame);
   font-family: var(--font-body);
   font-weight: 600;
   letter-spacing: 0.2em;
@@ -159,3 +149,8 @@
     grid-template-columns: 1fr 1fr;
   }
 }
+
+.section { background: linear-gradient(#f7efdde8, #f7efdde8), var(--paper-light) url("/assets/press-kit/paper.webp") repeat; }
+.headline { font-size: clamp(30px, 4.5vw, 50px); line-height: 1.12; }
+.cover { border: 8px solid var(--paper-light); box-shadow: 5px 7px 0 #29140f25; }
+.label { letter-spacing: .12em; }

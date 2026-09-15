@@ -5,7 +5,7 @@ import type { Locale } from "@/i18n/dictionaries";
 import { dictionaries } from "@/i18n/dictionaries";
 import { routes, musicPath, showPath } from "@/i18n/routes";
 import { releases, kamikaze, getRelease } from "@/data/releases";
-import { members } from "@/data/members";
+import { MemberGrid } from "./MemberGrid";
 import { siteConfig } from "@/data/site.config";
 import { shows } from "@/data/shows";
 import { isPastShow, upcomingShows } from "@/lib/events";
@@ -88,23 +88,22 @@ export function BandPage({ locale }: { locale: Locale }) {
       <h2>{es ? "Nacidos en Tulum" : "Born in Tulum"}</h2>
       <p>
         {es
-          ? "La banda nació en febrero de 2020, con Dorian Remis en la voz y Che en la guitarra. JP se sumó al bajo en abril de ese año. Lo que comenzó como un grupo de covers se transformó en un proyecto de canciones propias: rock and roll crudo, guitarras y psicodelia desde Quintana Roo."
-          : "The band formed in February 2020 with Dorian Remis on vocals and Che on guitar. JP joined on bass that April. What began with covers became a project built around original songs: raw rock and roll, guitars and psychedelia from Quintana Roo."}
+          ? "La banda nació en febrero de 2020, con Dorian Remis en la voz y Che en la guitarra. JP Soria se sumó al bajo en abril de ese año. Lo que comenzó como un grupo de covers se transformó en un proyecto de canciones propias: rock and roll crudo, guitarras y psicodelia desde Quintana Roo."
+          : "The band formed in February 2020 with Dorian Remis on vocals and Che on guitar. JP Soria joined on bass that April. What began with covers became a project built around original songs: raw rock and roll, guitars and psychedelia from Quintana Roo."}
       </p>
       <p>
         {es
           ? "Sus primeros escenarios estuvieron en Tulum, Playa del Carmen, Cancún, Bacalar y Holbox. Después llevaron su música a ciudades como Guadalajara, Guanajuato, Pachuca, Cuernavaca, Querétaro y Ciudad de México."
           : "Their early shows took them through Tulum, Playa del Carmen, Cancún, Bacalar and Holbox. They later brought their music to Guadalajara, Guanajuato, Pachuca, Cuernavaca, Querétaro and Mexico City."}
       </p>
+      <h2>{es ? "Del Caribe al escenario" : "From the Caribbean to the stage"}</h2>
+      <p>
+        {es
+          ? "Entre 2025 y 2026, Caribbean Voodoo compartió escenario con La Castañeda y participó en la primera edición de Caribe Suena, en Playa del Carmen, junto a Kinky, Inspector y Genitallica."
+          : "In 2025 and 2026, Caribbean Voodoo shared the stage with La Castañeda and played the first edition of Caribe Suena in Playa del Carmen, alongside Kinky, Inspector and Genitallica."}
+      </p>
       <h2>{es ? "Integrantes" : "Members"}</h2>
-      <dl className={styles.memberList}>
-        {members.map((member) => (
-          <div className={styles.member} key={member.name}>
-            <dt>{member.name}</dt>
-            <dd>{t.nosotros.roles[member.roleKey]}</dd>
-          </div>
-        ))}
-      </dl>
+      <MemberGrid locale={locale} />
       <h2>{es ? "De Serpientes a Kamikaze" : "From Serpientes to Kamikaze"}</h2>
       <p>
         {es
@@ -130,8 +129,8 @@ export function MusicPage({ locale, slug }: { locale: Locale; slug: string }) {
   if (!release) notFound();
   const es = locale === "es";
   const single = release.id === "kamikaze";
-  const upcoming = !release.releaseDate;
-  const stream = upcoming ? kamikaze : release;
+  const singleOnly = release.streamingIsSingle === true;
+  const stream = singleOnly ? kamikaze : release;
   const date =
     release.releaseDate &&
     new Intl.DateTimeFormat(es ? "es-MX" : "en-US", {
@@ -181,19 +180,19 @@ export function MusicPage({ locale, slug }: { locale: Locale; slug: string }) {
       )}
       {date && (
         <p>
-          {es ? "Lanzamiento" : "Released"}:{" "}
+          {es ? "Lanzamiento" : "Release date"}:{" "}
           <time dateTime={release.releaseDate}>{date}</time>
         </p>
       )}
-      {upcoming && (
+      {singleOnly && (
         <p>
           {es
-            ? "El álbum completo está por venir; la fecha de lanzamiento aún no está anunciada. Mientras tanto, escucha Kamikaze."
-            : "The full album is still to come; its release date has not been announced. Listen to Kamikaze while you wait."}
+            ? "El lanzamiento del álbum completo está anunciado para el 17 de septiembre de 2026. Por ahora, los enlaces de escucha corresponden al sencillo Kamikaze."
+            : "The full album release is announced for September 17, 2026. For now, the listening links are for the single Kamikaze."}
         </p>
       )}
       <h2>
-        {upcoming
+        {singleOnly
           ? es
             ? "Escucha Kamikaze"
             : "Listen to Kamikaze"
@@ -203,7 +202,7 @@ export function MusicPage({ locale, slug }: { locale: Locale; slug: string }) {
       </h2>
       <div className={styles.actions}>
         {Object.entries(stream.streaming)
-          .filter(([key]) => key !== "youtube" || single || upcoming)
+          .filter(([key]) => key !== "youtube" || single || singleOnly)
           .map(([key, href], i) => (
             <ActionLink
               key={key}
@@ -347,6 +346,7 @@ export function PressPage({ locale }: { locale: Locale }) {
       </p>
       <h2>{es ? "Logo oficial" : "Official logo"}</h2>
       <img
+        className={styles.pressLogo}
         src="/assets/logo_gold.png"
         alt="Caribbean Voodoo"
         width={717}

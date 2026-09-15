@@ -6,22 +6,7 @@
   overflow: hidden;
 }
 
-.glow {
-  position: absolute;
-  top: 8%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(680px, 120vw);
-  height: min(680px, 120vw);
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(30, 150, 128, calc(0.32 * var(--cvglow, 1))) 0%,
-    rgba(18, 80, 72, calc(0.18 * var(--cvglow, 1))) 42%,
-    rgba(8, 12, 10, 0) 70%
-  );
-  pointer-events: none;
-}
+.glow { display: none; }
 
 .inner {
   position: relative;
@@ -76,30 +61,20 @@
   margin: 30px 0 0;
   max-width: 440px;
 }
-.flyerGlow {
-  position: absolute;
-  inset: -8%;
-  background: radial-gradient(
-    circle,
-    rgba(30, 150, 128, calc(0.4 * var(--cvglow, 1))) 0%,
-    rgba(8, 12, 10, 0) 68%
-  );
-  filter: blur(4px);
-  pointer-events: none;
-}
+.flyerGlow { display: none; }
 .flyer {
   position: relative;
   width: 100%;
   height: auto;
   display: block;
-  border: 1px solid rgba(224, 179, 76, 0.2);
+  border: 1px solid var(--border-frame);
   border-radius: 3px;
 }
 
 /* Meta list -------------------------------------------------------------- */
 .meta {
   margin: 32px 0 0;
-  border: 1px solid rgba(224, 179, 76, 0.14);
+  border: 1px solid var(--border-frame);
   border-radius: 4px;
   overflow: hidden;
 }
@@ -108,8 +83,8 @@
   grid-template-columns: 120px 1fr;
   gap: 16px;
   padding: 15px 18px;
-  background: var(--bg-black);
-  border-top: 1px solid rgba(224, 179, 76, 0.1);
+  background: linear-gradient(#eee3c9e8, #eee3c9e8), var(--bg-black) url("/assets/press-kit/paper.webp") repeat;
+  border-top: 1px solid var(--border-frame);
 }
 .metaRow:first-child {
   border-top: none;
@@ -128,7 +103,7 @@
   margin: 0;
   font-size: 15px;
   line-height: 1.5;
-  color: #e9e2d4;
+  color: var(--text-primary);
 }
 .metaSub {
   display: block;
@@ -148,7 +123,7 @@
 /* Other dates ------------------------------------------------------------ */
 .other {
   margin: 48px 0 0;
-  border-top: 1px solid rgba(224, 179, 76, 0.12);
+  border-top: 1px solid var(--border-frame);
   padding-top: 26px;
 }
 .otherLabel {
@@ -164,8 +139,8 @@
   flex-direction: column;
   gap: 1px;
   margin-top: 14px;
-  background: rgba(224, 179, 76, 0.14);
-  border: 1px solid rgba(224, 179, 76, 0.14);
+  background: var(--border-frame);
+  border: 1px solid var(--border-frame);
   border-radius: 4px;
   overflow: hidden;
 }
@@ -173,15 +148,15 @@
   display: flex;
   align-items: baseline;
   gap: 12px;
-  background: var(--bg-black);
+  background: linear-gradient(#eee3c9e8, #eee3c9e8), var(--bg-black) url("/assets/press-kit/paper.webp") repeat;
   padding: 14px 18px;
   font-size: 14px;
-  color: #e9e2d4;
+  color: var(--text-primary);
   text-decoration: none;
   transition: background 0.2s;
 }
 .otherLink:hover {
-  background: #0b120f;
+  background: #e2d4b7;
 }
 .otherDate {
   font-weight: 600;
@@ -196,3 +171,6 @@
     padding-top: 76px;
   }
 }
+
+.headline { text-transform: uppercase; line-height: 1.15; }
+@media (max-width: 420px) { .metaRow { grid-template-columns: 1fr; gap: 6px; } }

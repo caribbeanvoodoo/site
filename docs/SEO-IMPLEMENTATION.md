@@ -61,7 +61,7 @@ Homepage descriptions explicitly mention Kamikaze and the upcoming album. Band d
 Each page emits one JSON-LD graph. All schema builders are checked against schema-dts's Schema.org types. JSON-LD serialization escapes < to avoid accidental script termination.
 
 - WebSite: stable /#website identity.
-- MusicGroup: stable /#band, current three-person roster, Tulum origin, confirmed founding month, logo, contact and direct artist profiles. Instagram, YouTube, Spotify artist and Apple Music artist identities are used in sameAs, not a release smart link.
+- MusicGroup: stable /#band, owner-approved four-person roster, Tulum origin, confirmed founding month, logo, contact and direct artist profiles. Instagram, YouTube, Spotify artist and Apple Music artist identities are used in sameAs, not a release smart link.
 - WebPage: its localized URL, title, description, language and connection to the band/site.
 - BreadcrumbList: the visible home link plus current page on detail pages.
 - MusicAlbum: stable /#release-[slug] for the two albums and the Kamikaze single. Unreleased DarkPsycho has no invented release date or released recordings. Its announced tracklist is visible text.
@@ -82,7 +82,7 @@ Add future concerts in src/data/shows.ts. Set fullAddress, startDateTime includi
 ## Verified content sources
 
 - Supplied original press kit: band founding, first members, regional history, Serpientes studios/production/date and announced nine-song album concept/tracklist.
-- The current public/press/CaribbeanPress.pdf is the more recently committed designed press kit. It remains byte-for-byte unchanged. It is image-based; a visual review confirmed the story/release pages. Page 8 includes Marcos Ceballos on drums, while the task explicitly requests retaining the current three-person website roster. No drummer was added. The owner must reconcile this before claiming all platforms/PDF show the same lineup.
+- The current public/press/CaribbeanPress.pdf is the more recently committed designed press kit. It remains byte-for-byte unchanged. It is image-based; a visual review confirmed the story/release pages. Page 8 includes Marcos Ceballos on drums, while the task explicitly requests retaining the current three-person website roster. No drummer was added. Subsequent owner approval on September 15 confirmed all four members and portraits; the website now includes Marcos Ceballos and the full name JP Soria.
 - Apple artist: https://music.apple.com/us/artist/caribbean-voodoo/1527192596
 - Spotify artist, confirmed from the release page and original kit: https://open.spotify.com/artist/6SWFy2ybNR8lIUiSnhQsCU
 - Kamikaze: https://music.apple.com/us/album/kamikaze-single/6801705493 (August 14, 2026).
@@ -140,7 +140,7 @@ Tests cover all 20 localized content URLs with JavaScript disabled, unique metad
 
 Next.js was patched within the existing major version to 15.5.25. PostCSS has a patched-version override (^8.5.23) because the Next 15 dependency range retained a vulnerable older version. ESLint and Playwright were added as development-only tools. npm audit reported zero vulnerabilities after this patch. No Next 16 migration was made.
 
-Remaining factual/account items: full DarkPsycho release date and correct full-album streaming destinations when released; any confirmed missing credits; full Karunna/Rockstar Burger addresses; future event details and flyer assets; roster consistency in the supplied PDF; Search Console/Bing verification and submission; platform bio/website updates; Official Artist Channel status; genuine press/venue links; verified analytics reporting access. No new street address, credit, date or account action is invented to complete a checklist.
+Remaining factual/account items: correct full-album streaming destinations when released (September 17, 2026 release date confirmed by the owner); any confirmed missing credits; full Karunna/Rockstar Burger addresses; future event details and flyer assets; Search Console/Bing verification and submission; platform bio/website updates; Official Artist Channel status; genuine press/venue links; verified analytics reporting access. No new street address, credit, date or account action is invented to complete a checklist.
 
 ### Completed local verification
 
@@ -159,3 +159,25 @@ Implementation commit 4280cea was pushed to main and deployed by the existing Gi
 - The public Schema.org validator fetched https://www.caribbeanvoodoo.mx/en/music/kamikaze and reported **0 errors, 0 warnings**. Its top-level results were WebPage and VideoObject, with the connected graph nested beneath them. This is not a Google indexing or rich-result eligibility guarantee.
 - HTTPS apex → HTTPS www: one 308 redirect, then 200. HTTP www → HTTPS www: one 308, then 200. HTTP apex → HTTPS apex → HTTPS www: two 308 redirects, then 200. Reducing this last legacy entry path to a single hop requires access to the Vercel domain/edge configuration; the saved CLI login is expired. All published internal, canonical, sitemap and artist-profile destination URLs already use the direct HTTPS www origin.
 - Google Search Console, Google Rich Results Test and Bing property actions remain outstanding. No search impressions, rankings or account analytics have been fabricated.
+
+
+## Press-kit visual refresh — September 15, 2026
+
+Owner approved the press-kit style throughout the site and its four-member lineup.
+Special Elite headings and Work Sans body text accompany cream paper, dark ink,
+rust and raspberry accents. The approved portraits and coastal artwork are cropped
+from the supplied PDF into optimized WebP assets. The original photos are not regenerated.
+Spanish and English URLs, headings, canonical links, structured data, contact links
+and the existing Klaviyo handler are retained.
+
+DarkPsycho Metamorphosis has the owner-confirmed release date September 17, 2026.
+`streamingIsSingle` explicitly separates the announced date from streaming availability.
+Kamikaze remains the available single; full-album pages must not identify themselves
+with the single's platform URLs in structured data. Replace the album destinations
+and clear this flag when verified album links are available.
+
+Validation for the refresh: production build and lint passed; all eight Playwright
+tests passed, including loaded approved portraits, matching four-member structured
+data, the confirmed release date and clearly labeled Kamikaze destinations.
+Desktop and mobile screenshots were visually inspected after softening the paper
+texture. Signup requests were intercepted in tests; no live profiles were created.

@@ -5,8 +5,8 @@ Official site: **https://www.caribbeanvoodoo.mx**. The apex domain redirects her
 ## Stack
 
 - Next.js 15 App Router, React 19 and TypeScript
-- CSS Modules and the original design-token layer
-- Bagel Fat One, Kaushan Script and Work Sans via next/font
+- CSS Modules and a press-kit-inspired paper/ink/rust design-token layer
+- Special Elite headings and Work Sans body text via next/font
 - Spanish and English rendered on separate URLs
 - Klaviyo signup capture and Vercel Analytics
 - GitHub → Vercel deployment; Namecheap domain
@@ -42,7 +42,7 @@ content. `src/data/shows.ts` controls concerts. Use verified full addresses and
 venue time offsets; update each item's `modified` date when its content changes.
 
 `src/components/HomePage.tsx` assembles the original homepage sections. Editorial
-pages reuse the established event-page styling and tokens. `src/lib/seo.ts`
+pages and the homepage share the press-kit palette, textures and typography. `src/lib/seo.ts`
 centralizes localized metadata and Schema.org graphs. `src/i18n/routes.ts` maps
 language counterparts. Middleware determines language from the URL; the root
 layout renders matching HTML and client context. No cookie or localStorage

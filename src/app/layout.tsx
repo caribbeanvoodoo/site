@@ -1,22 +1,15 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
-import { Bagel_Fat_One, Kaushan_Script, Work_Sans } from "next/font/google";
+import { Special_Elite, Work_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { LocaleProvider } from "@/i18n/LocaleContext";
 import { SITE_URL } from "@/data/site.config";
 import "./globals.css";
 
-const bagel = Bagel_Fat_One({
+const typewriter = Special_Elite({
   weight: "400",
   subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
-});
-
-const kaushan = Kaushan_Script({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-script",
+  variable: "--font-typewriter",
   display: "swap",
 });
 
@@ -41,7 +34,7 @@ export default async function RootLayout({
   return (
     <html
       lang={locale === "es" ? "es-MX" : "en"}
-      className={`${bagel.variable} ${kaushan.variable} ${workSans.variable}`}
+      className={`${typewriter.variable} ${workSans.variable}`}
     >
       <body>
         <LocaleProvider locale={locale}>{children}</LocaleProvider>

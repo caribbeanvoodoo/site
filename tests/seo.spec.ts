@@ -70,10 +70,12 @@ test("every page exposes localized metadata, links and valid JSON-LD without Jav
       const album = graph["@graph"].find(
         (node: { "@type": string }) => node["@type"] === "MusicAlbum",
       );
-      expect(album.datePublished).toBeUndefined();
+      expect(album.datePublished).toBe("2026-09-17");
+      expect(album.sameAs).toBeUndefined();
+      expect(album.track).toBeUndefined();
       await expect(
         page.getByText(
-          en ? "Upcoming concept album" : "Próximo álbum conceptual",
+          en ? "Concept album · Sep 17, 2026" : "Álbum conceptual · 17 sep 2026",
           { exact: true },
         ),
       ).toBeVisible();
@@ -265,5 +267,25 @@ test("narrow screens do not overflow", async ({ page }) => {
       ),
       path,
     ).toBe(true);
+  }
+});
+
+
+test("approved lineup images load and album links remain clearly labeled as Kamikaze", async ({ page }) => {
+  for (const path of ["/", "/en", "/banda", "/en/band"]) {
+    await page.goto(path);
+    const portrait = page.getByRole("img", { name: "Marcos Ceballos", exact: true });
+    await portrait.scrollIntoViewIfNeeded();
+    await expect(portrait).toBeVisible();
+    await expect.poll(() => portrait.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
+    const graph = JSON.parse(await page.locator('script[type="application/ld+json"]').innerText());
+    const band = graph["@graph"].find((node: { "@type": string }) => node["@type"] === "MusicGroup");
+    expect(band.member.map((m: { name: string }) => m.name)).toEqual(["Dorian Remis", "Che", "Marcos Ceballos", "JP Soria"]);
+  }
+  for (const path of ["/musica/darkpsycho-metamorphosis", "/en/music/darkpsycho-metamorphosis"]) {
+    await page.goto(path);
+    await expect(page.locator('time[datetime="2026-09-17"]')).toBeVisible();
+    await expect(page.getByRole("heading", { name: /^(Escucha|Listen to) Kamikaze$/ })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Spotify", exact: true }).first()).toHaveAttribute("href", "https://open.spotify.com/album/3BlwqSrof10sdlwqvKhOFu");
   }
 });

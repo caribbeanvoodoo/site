@@ -1,0 +1,7 @@
+.wrap { container-type: inline-size; width: 100%; margin: 32px auto; }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 16px; padding: 0; margin: 0; list-style: none; }
+.member { text-align: left; }
+.portrait { display: block; width: 100%; height: auto; aspect-ratio: 2 / 3; object-fit: cover; border: 5px solid var(--paper-light); box-shadow: 3px 4px 0 #29140f25; }
+.name { font-family: var(--font-display); font-size: clamp(14px, 2vw, 18px); color: var(--ink); margin-top: 16px; text-transform: uppercase; line-height: 1.35; }
+.role { color: var(--text-muted); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; margin-top: 5px; }
+@container (min-width: 800px) { .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; } }

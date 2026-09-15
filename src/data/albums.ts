@@ -12,6 +12,8 @@ export interface Album {
   slug: string;
   modified: string;
   releaseDate?: string;
+  /** True until verified full-album destinations replace the available single links. */
+  streamingIsSingle?: boolean;
   title: string;
   cover: string;
   /** Small uppercase label above the copy, e.g. "Concept album · 2026". */
@@ -38,9 +40,11 @@ export const albums: Album[] = [
     id: "darkpsycho",
     slug: "darkpsycho-metamorphosis",
     modified: "2026-09-15",
+    releaseDate: "2026-09-17", // Confirmed by the owner.
+    streamingIsSingle: true,
     title: "DarkPsycho Metamorphosis",
     cover: "/assets/darkpsycho_cover.jpg",
-    label: { es: "Próximo álbum conceptual", en: "Upcoming concept album" },
+    label: { es: "Álbum conceptual · 17 sep 2026", en: "Concept album · Sep 17, 2026" },
     copy: {
       es: "Nuestro nuevo álbum conceptual: un descenso, una mutación y un renacimiento. Nueve canciones cósmicas e instintivas, grabadas con la esencia cruda de la banda. El sencillo Kamikaze ya está disponible, con video musical.",
       en: "Our new concept album: a descent, a mutation, and a rebirth. Nine cosmic, instinctive songs recorded with the band's raw essence. The single Kamikaze is out now, with a music video.",
@@ -53,8 +57,8 @@ export const albums: Album[] = [
       "Naufrague",
       "Serpientes",
       "Rosas Negras",
-      "Rio",
-      "Psicopata",
+      "Río",
+      "Psicópata",
     ],
     streaming: {
       spotify: "https://open.spotify.com/album/3BlwqSrof10sdlwqvKhOFu",

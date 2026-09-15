@@ -1,35 +1,32 @@
+/* Press-kit palette: aged paper, dark ink, rust and raspberry.
+   Legacy color aliases keep shared components on the same theme. */
 :root {
-  /* ---- Colors (design tokens, README §Design tokens) ---- */
-  --bg-black: #050605;
-  --bg-panel: #080c0a;
-  --bg-panel-lista: #070d0b;
-  --gold: #e0b34c;
-  --gold-hover: #edc45f;
-  --gold-ink: #14100d; /* text sitting on solid gold */
-  --red-cursive: #c8241a;
-  --red-cursive-bright: #e0392c;
-
-  --text-primary: #cbc3b2;
-  --text-body: #b3ab99;
-  --text-muted: #8f897a;
-  /* The muted/faint tokens were lightened to clear WCAG AA 4.5:1 against the
-     dark panels — the original values sat between 2.3:1 and 3.5:1. */
-  --text-faint: #8a8474; /* 5.05:1 on the input fill */
-  --text-fineprint: #7d7768; /* 4.55:1 on page black */
-  --text-input: #e9e2d4;
-  /* Error red that still reads as "blood red" but passes AA (5.89:1). */
-  --red-error: #f4574a;
-
-  --border-hairline: rgba(224, 179, 76, 0.1);
-  --border-frame: rgba(224, 179, 76, 0.5);
-
-  /* Ambient glow intensity multiplier (README "Ambiente" control, default 60% -> 1). */
-  --cvglow: 1;
-
-  --radius: 3px;
-
-  --font-display: "Bagel Fat One", system-ui, sans-serif;
-  --font-script: "Kaushan Script", cursive;
+  --paper: #eee3c9;
+  --paper-light: #f7efdd;
+  --ink: #29140f;
+  --rust: #943b28;
+  --raspberry: #a20b45;
+  --mustard: #c79532;
+  --bg-black: var(--paper);
+  --bg-panel: var(--paper-light);
+  --bg-panel-lista: var(--rust);
+  --gold: var(--rust);
+  --gold-hover: #702a1d;
+  --gold-ink: #fff5df;
+  --red-cursive: var(--raspberry);
+  --red-cursive-bright: var(--raspberry);
+  --text-primary: var(--ink);
+  --text-body: #49382b;
+  --text-muted: #63513f;
+  --text-faint: #6b5641;
+  --text-fineprint: #6b5641;
+  --text-input: var(--ink);
+  --red-error: #a32220;
+  --border-hairline: #29140f26;
+  --border-frame: #943b2880;
+  --radius: 2px;
+  --font-display: var(--font-typewriter), Georgia, serif;
+  --font-script: var(--font-typewriter), Georgia, serif;
   --font-body: "Work Sans", system-ui, sans-serif;
 }
 
@@ -59,7 +56,7 @@ html {
 
 body {
   margin: 0;
-  background: var(--bg-black);
+  background: linear-gradient(#eee3c9e8, #eee3c9e8), var(--bg-black) url("/assets/press-kit/paper.webp") repeat;
   color: var(--text-primary);
   font-family: var(--font-body);
   overflow-x: hidden;
@@ -101,4 +98,12 @@ button:focus-visible {
   .cvBreathe {
     animation: none !important;
   }
+}
+
+::selection { background: var(--raspberry); color: var(--paper-light); }
+button, input { font: inherit; }
+img { max-width: 100%; }
+h1, h2, h3 { font-weight: 400; overflow-wrap: anywhere; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
 }

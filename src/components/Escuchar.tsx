@@ -54,7 +54,7 @@ function AlbumBlock({ album, featured }: { album: Album; featured: boolean }) {
           </div>
         )}
 
-        {!album.releaseDate && (
+        {album.streamingIsSingle && (
           <p className={styles.copy}>
             {locale === "es"
               ? "Escucha el sencillo Kamikaze:"
